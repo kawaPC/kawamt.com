@@ -1,6 +1,7 @@
 import { join } from "path";
 import fs from "fs";
 import matter from "gray-matter";
+import { formatKanjiYYYYMMDD } from "./dayjsUtil";
 
 const ARTICLES_PATH = join(process.cwd(), "articles/");
 
@@ -27,11 +28,21 @@ function getPostFilePaths(): string[] {
   return fs.readdirSync(ARTICLES_PATH).filter((path) => /\.md?$/.test(path));
 }
 
+function getDate(slug?: string): string {
+  if (!slug) {
+    return "";
+  }
+  const regex = slug.match(/\d{4}-\d{2}-\d{2}/);
+  return regex ? regex[0] : "";
+}
+
 function getArticleItems(filePath: string, fields: string[] = []): Items {
   const slug = filePath.replace(/\.md?$/, "");
   const { data, content } = getArticle(slug);
 
   const items: Items = {};
+
+  const date = data.date || getDate(slug);
 
   fields.forEach((field) => {
     if (field === "slug") {
@@ -39,6 +50,12 @@ function getArticleItems(filePath: string, fields: string[] = []): Items {
     }
     if (field === "content") {
       items[field] = content;
+    }
+    if (field === "date") {
+      items[field] = date;
+    }
+    if (field === "dateJa") {
+      items[field] = formatKanjiYYYYMMDD(date);
     }
 
     if (data[field]) {
