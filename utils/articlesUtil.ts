@@ -12,7 +12,7 @@ type Article = {
 };
 
 export function getArticle(slug: string): Article {
-  const fullPath = join(ARTICLES_PATH, `${slug}.mdx`);
+  const fullPath = join(ARTICLES_PATH, `${slug}.md`);
   const fileContents = fs.readFileSync(fullPath, "utf8");
   const { data, content } = matter(fileContents);
 
@@ -24,11 +24,11 @@ type Items = {
 };
 
 function getPostFilePaths(): string[] {
-  return fs.readdirSync(ARTICLES_PATH).filter((path) => /\.mdx?$/.test(path));
+  return fs.readdirSync(ARTICLES_PATH).filter((path) => /\.md?$/.test(path));
 }
 
 function getArticleItems(filePath: string, fields: string[] = []): Items {
-  const slug = filePath.replace(/\.mdx?$/, "");
+  const slug = filePath.replace(/\.md?$/, "");
   const { data, content } = getArticle(slug);
 
   const items: Items = {};
