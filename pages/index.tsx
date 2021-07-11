@@ -22,7 +22,7 @@ const Home: React.FC<Props> = ({ articles }) => {
         {articles.map((article) => {
           return (
             <li key={article.slug}>
-              <time dateTime={article.date}>{article.date}</time>
+              <time dateTime={article.date}>{article.dateJa}</time>
               <Link href={`/articles/${article.slug}`}>{article.title}</Link>
             </li>
           );
@@ -35,13 +35,7 @@ const Home: React.FC<Props> = ({ articles }) => {
 export default Home;
 
 export const getStaticProps: GetStaticProps = async () => {
-  const articles = getAllArticles([
-    "slug",
-    "date",
-    "thumbnail",
-    "title",
-    "description",
-  ]);
+  const articles = getAllArticles(["slug", "title", "date", "dateJa"]);
 
   return { props: { articles } };
 };
