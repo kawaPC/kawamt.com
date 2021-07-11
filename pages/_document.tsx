@@ -1,10 +1,9 @@
 import Document, { Html, Head, Main, NextScript } from "next/document";
 
 class MyDocument extends Document {
-
   render() {
     return (
-      <Html>
+      <Html lang="ja">
         <Head>
           <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
         </Head>
