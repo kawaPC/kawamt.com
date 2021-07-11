@@ -4,3 +4,9 @@ body {
   padding: 2rem 1rem;
   word-wrap: break-word;
 }
+
+time {
+  color: #666;
+  display: block;
+  font-size: 0.8rem;
+}
