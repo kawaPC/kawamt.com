@@ -1,13 +1,13 @@
 import { GetStaticProps } from "next";
-import Head from "next/head"
+import Head from "next/head";
 import Link from "next/link";
 import { IArticle } from "types/article";
 import { SITE_NAME } from "types/constants";
 import { getAllArticles } from "utils/articlesUtil";
 
 type Props = {
-  articles: IArticle[]
-}
+  articles: IArticle[];
+};
 
 const Home: React.FC<Props> = ({ articles }) => {
   return (
