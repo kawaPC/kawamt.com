@@ -51,8 +51,10 @@ function getArticleItems(filePath: string, fields: string[] = []): Items {
 
 export function getAllArticles(fields: string[] = []): Items[] {
   const filePaths = getPostFilePaths();
-  const posts = filePaths
+  const articles = filePaths
     .map((filePath) => getArticleItems(filePath, fields))
-    .sort((post1, post2) => (post1.date > post2.date ? -1 : 1));
-  return posts;
+    .sort((post1, post2) =>
+      Date.parse(post1.date) > Date.parse(post2.date) ? -1 : 1
+    );
+  return articles;
 }
