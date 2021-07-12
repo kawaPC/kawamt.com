@@ -1,15 +1,15 @@
-import { getAllArticleSlugs, getArticle } from "utils/articlesUtil";
+import { getAllEntrySlugs, getEntry } from "utils/entryUtil";
 import { serialize } from "next-mdx-remote/serialize";
 import { GetStaticPaths, GetStaticProps } from "next";
 import { MDXRemote, MDXRemoteSerializeResult } from "next-mdx-remote";
-import { IArticle } from "types/article";
+import { IEntry } from "types/entry";
 
 type Props = {
   source: MDXRemoteSerializeResult;
-  frontMatter: Omit<IArticle, "slug">;
+  frontMatter: Omit<IEntry, "slug">;
 };
 
-const ArticlePage: React.FC<Props> = ({ source, frontMatter }: Props) => {
+const EntryPage: React.FC<Props> = ({ source, frontMatter }: Props) => {
   return (
     <article>
       <h1>{frontMatter.title}</h1>
@@ -19,10 +19,10 @@ const ArticlePage: React.FC<Props> = ({ source, frontMatter }: Props) => {
   );
 };
 
-export default ArticlePage;
+export default EntryPage;
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const { content, data } = getArticle(params?.title as string);
+  const { content, data } = getEntry(params?.title as string);
 
   const mdxSource = await serialize(content, { scope: data });
 
@@ -35,7 +35,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const slugs = getAllArticleSlugs();
+  const slugs = getAllEntrySlugs();
 
   const paths = slugs.map((slug) => ({
     params: {

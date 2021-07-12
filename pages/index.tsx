@@ -2,15 +2,15 @@ import { GetStaticProps } from "next";
 import { MDXRemote } from "next-mdx-remote";
 import Head from "next/head";
 import Link from "next/link";
-import { IArticle } from "types/article";
+import { IEntry } from "types/entry";
 import { SITE_NAME } from "types/constants";
-import { getAllArticleSummaries } from "utils/articlesUtil";
+import { getAllEntrySummaries } from "utils/entryUtil";
 
 type Props = {
-  articles: IArticle[];
+  entries: IEntry[];
 };
 
-const Home: React.FC<Props> = ({ articles }) => {
+const Home: React.FC<Props> = ({ entries }) => {
   return (
     <div>
       <Head>
@@ -20,16 +20,16 @@ const Home: React.FC<Props> = ({ articles }) => {
       <h1>記事一覧</h1>
 
       <ol reversed>
-        {articles.map((article) => {
+        {entries.map((entry) => {
           return (
-            <li key={article.slug}>
-              <time dateTime={article.date}>
-                <Link href={`/articles/${article.slug}`}>{article.dateJa}</Link>
+            <li key={entry.slug}>
+              <time dateTime={entry.date}>
+                <Link href={`/entry/${entry.slug}`}>{entry.dateJa}</Link>
               </time>
-              <p>{article.title}</p>
-              <MDXRemote {...article.introductionSource} />
-              {!article.isShort && (
-                <Link href={`/articles/${article.slug}`}>続きを読む</Link>
+              <p>{entry.title}</p>
+              <MDXRemote {...entry.introductionSource} />
+              {!entry.isShort && (
+                <Link href={`/entry/${entry.slug}`}>続きを読む</Link>
               )}
               <hr />
             </li>
@@ -43,7 +43,7 @@ const Home: React.FC<Props> = ({ articles }) => {
 export default Home;
 
 export const getStaticProps: GetStaticProps = async () => {
-  const articles = await getAllArticleSummaries();
+  const entries = await getAllEntrySummaries();
 
-  return { props: { articles } };
+  return { props: { entries } };
 };
