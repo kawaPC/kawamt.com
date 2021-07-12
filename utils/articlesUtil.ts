@@ -2,6 +2,8 @@ import { join } from "path";
 import fs from "fs";
 import matter from "gray-matter";
 import { formatKanjiYYYYMMDD } from "./dayjsUtil";
+import { IArticle } from "types/article";
+import { serialize } from "next-mdx-remote/serialize";
 
 const ARTICLES_PATH = join(process.cwd(), "articles/");
 
@@ -20,11 +22,7 @@ export function getArticle(slug: string): Article {
   return { data, content };
 }
 
-type Items = {
-  [key: string]: string;
-};
-
-function getPostFilePaths(): string[] {
+function getArticleFilePaths(): string[] {
   return fs.readdirSync(ARTICLES_PATH).filter((path) => /\.md?$/.test(path));
 }
 
@@ -36,42 +34,54 @@ function getDate(slug?: string): string {
   return regex ? regex[0] : "";
 }
 
-function getArticleItems(filePath: string, fields: string[] = []): Items {
+const getArticleSummary = async (filePath: string): Promise<IArticle> => {
   const slug = filePath.replace(/\.md?$/, "");
   const { data, content } = getArticle(slug);
 
-  const items: Items = {};
+  const [introduction, body] = content.split("***");
+  const mdxIntroducion = await serialize(introduction, { scope: data });
 
   const date = data.date || getDate(slug);
 
-  fields.forEach((field) => {
-    if (field === "slug") {
-      items[field] = slug;
-    }
-    if (field === "content") {
-      items[field] = content;
-    }
-    if (field === "date") {
-      items[field] = date;
-    }
-    if (field === "dateJa") {
-      items[field] = formatKanjiYYYYMMDD(date);
-    }
+  return {
+    slug,
+    date,
+    dateJa: formatKanjiYYYYMMDD(date),
+    introductionSource: mdxIntroducion,
+    isShort: !body,
+    title: data.title,
+  };
+};
 
-    if (data[field]) {
-      items[field] = data[field];
-    }
-  });
+export const getAllArticleSummaries = async (): Promise<IArticle[]> => {
+  const filePaths = getArticleFilePaths();
 
-  return items;
+  const articlesPromise = filePaths.map((filePath) =>
+    getArticleSummary(filePath)
+  );
+
+  const articles = await Promise.all(articlesPromise);
+
+  return articles;
+};
+
+function getArticleSlugAndDate(filePath: string) {
+  const slug = filePath.replace(/\.md?$/, "");
+
+  const { data } = getArticle(slug);
+
+  const date = data.date || getDate(slug);
+
+  return { slug, date };
 }
 
-export function getAllArticles(fields: string[] = []): Items[] {
-  const filePaths = getPostFilePaths();
-  const articles = filePaths
-    .map((filePath) => getArticleItems(filePath, fields))
-    .sort((post1, post2) =>
-      Date.parse(post1.date) > Date.parse(post2.date) ? -1 : 1
-    );
-  return articles;
+export function getAllArticleSlugs(): string[] {
+  const filePaths = getArticleFilePaths();
+  const slugs = filePaths
+    .map((filePath) => getArticleSlugAndDate(filePath))
+    .sort((article1, article2) =>
+      Date.parse(article1.date) > Date.parse(article2.date) ? -1 : 1
+    )
+    .map((article) => article.slug);
+  return slugs;
 }

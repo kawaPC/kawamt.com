@@ -1,4 +1,4 @@
-import { getAllArticles, getArticle } from "utils/articlesUtil";
+import { getAllArticleSlugs, getArticle } from "utils/articlesUtil";
 import { serialize } from "next-mdx-remote/serialize";
 import { GetStaticPaths, GetStaticProps } from "next";
 import { MDXRemote, MDXRemoteSerializeResult } from "next-mdx-remote";
@@ -35,11 +35,11 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const articles = getAllArticles(["slug"]);
+  const slugs = getAllArticleSlugs();
 
-  const paths = articles.map((article) => ({
+  const paths = slugs.map((slug) => ({
     params: {
-      title: article.slug,
+      title: slug,
     },
   }));
 
