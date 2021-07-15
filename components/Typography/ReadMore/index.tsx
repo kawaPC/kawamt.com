@@ -1,5 +1,4 @@
 import Link from "next/link";
-import styles from "./ReadMore.module.css";
 
 type Props = {
   href: string;
@@ -7,9 +6,9 @@ type Props = {
 
 const ReadMore: React.VFC<Props> = ({ href }) => {
   return (
-    <p className={styles.readMore}>
+    <p className="readMore">
       <Link href={href}>
-        <a className={styles.link}>続きを読む</a>
+        <a className="link">続きを読む</a>
       </Link>
     </p>
   );

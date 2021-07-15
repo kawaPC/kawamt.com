@@ -1,6 +1,31 @@
-import Document, { Html, Head, Main, NextScript } from "next/document";
+import Document, {
+  Html,
+  Head,
+  Main,
+  NextScript,
+  DocumentContext,
+} from "next/document";
+// @ts-ignore
+import outputcss from "!raw-loader!../styles/output.css";
 
 class MyDocument extends Document {
+  static async getInitialProps(ctx: DocumentContext) {
+    const initialProps = await Document.getInitialProps(ctx);
+    return {
+      ...initialProps,
+      styles: (
+        <>
+          {initialProps.styles}
+          <style
+            dangerouslySetInnerHTML={{
+              __html: outputcss,
+            }}
+          />
+        </>
+      ),
+    };
+  }
+
   render() {
     return (
       <Html lang="ja">

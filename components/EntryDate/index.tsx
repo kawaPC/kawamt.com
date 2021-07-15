@@ -1,12 +1,10 @@
-import styles from "./EntryDate.module.css";
-
 type Props = {
   date: string;
 };
 
 const EntryDate: React.FC<Props> = ({ date, children }) => {
   return (
-    <div className={styles.datebox}>
+    <div className="datebox">
       <time dateTime={date}>{children}</time>
     </div>
   );
