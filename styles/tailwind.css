@@ -1,0 +1,60 @@
+@import "tailwindcss/base";
+
+/* Start purging... */
+@import "tailwindcss/components";
+/* Stop purging. */
+
+/* Start purging... */
+@import "tailwindcss/utilities";
+/* Stop purging. */
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, Helvetica Neue, Segoe UI,
+    Hiragino Kaku Gothic ProN, Hiragino Sans, ヒラギノ角ゴ ProN W3, Arial,
+    メイリオ, Meiryo, sans-serif;
+
+  @apply text-sm
+    antialiased;
+}
+
+p {
+  @apply my-6;
+}
+
+h2 {
+  @apply text-lg
+    font-bold;
+}
+
+hr {
+  @apply my-16;
+}
+
+.datebox {
+  margin: 60px auto 30px auto;
+  padding: 4px 0;
+
+  @apply w-28
+    font-bold
+    text-sm
+    text-white
+    text-center
+    leading-6
+    rounded-sm
+    bg-gray-900;
+}
+
+.readMore {
+  margin: 3rem auto 1.8rem auto;
+  @apply w-20;
+}
+
+.link {
+  @apply text-base
+    font-bold
+    pb-1
+    border-b-2
+    border-gray-800
+    hover:text-gray-500
+    hover:border-gray-500;
+}
