@@ -33,6 +33,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 
   return {
     props: entry,
+    revalidate: 10,
   };
 };
 
@@ -50,3 +51,5 @@ export const getStaticPaths: GetStaticPaths = async () => {
     fallback: false,
   };
 };
+
+export const config = { amp: "hybrid" };

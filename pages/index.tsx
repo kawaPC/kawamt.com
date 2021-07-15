@@ -39,5 +39,7 @@ export default Home;
 export const getStaticProps: GetStaticProps = async () => {
   const entries = await getAllEntrySummaries();
 
-  return { props: { entries } };
+  return { props: { entries }, revalidate: 10 };
 };
+
+export const config = { amp: "hybrid" };
