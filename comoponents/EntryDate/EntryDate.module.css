@@ -1,0 +1,13 @@
+.datebox {
+  margin: 60px auto 30px auto;
+  padding: 4px 0;
+
+  @apply w-28
+    font-bold
+    text-sm
+    text-white
+    text-center
+    leading-6
+    rounded-sm
+    bg-gray-900;
+}
