@@ -17,6 +17,7 @@ class MyDocument extends Document {
         <>
           {initialProps.styles}
           <style
+            key="custom"
             dangerouslySetInnerHTML={{
               __html: outputcss,
             }}

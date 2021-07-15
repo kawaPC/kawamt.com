@@ -23,7 +23,6 @@ declare namespace JSX {
       | "nodisplay"
       | "responsive";
     fallback?: "";
-    objectFit?: string;
     on?: string; // amp-image-lightbox
     role?: string;
     tabindex?: string;
