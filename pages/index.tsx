@@ -4,10 +4,10 @@ import { IEntrySummary } from "types/entry";
 import { SITE_NAME } from "types/constants";
 import { getAllEntrySummaries } from "utils/entryUtil";
 import React from "react";
-import { EntryDate } from "comoponents/EntryDate";
-import { Title } from "comoponents/Typography/Title";
-import { ReadMore } from "comoponents/Typography/ReadMore";
-import { RehypeToReactElement } from "comoponents/RehypeToReactElement";
+import { EntryDate } from "components/EntryDate";
+import { Title } from "components/Typography/Title";
+import { ReadMore } from "components/Typography/ReadMore";
+import { RehypeToReactElement } from "components/RehypeToReactElement";
 
 type Props = {
   entries: IEntrySummary[];

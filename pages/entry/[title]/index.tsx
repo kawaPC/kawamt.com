@@ -1,10 +1,10 @@
 import { getAllEntrySlugs, getEntry } from "utils/entryUtil";
 import { GetStaticPaths, GetStaticProps } from "next";
 import { IEntry } from "types/entry";
-import { H1 } from "comoponents/Typography/H1";
-import { EntryDate } from "comoponents/EntryDate";
+import { H1 } from "components/Typography/H1";
+import { EntryDate } from "components/EntryDate";
 import Head from "next/head";
-import { RehypeToReactElement } from "comoponents/RehypeToReactElement";
+import { RehypeToReactElement } from "components/RehypeToReactElement";
 
 const EntryPage: React.FC<IEntry> = ({
   title,
