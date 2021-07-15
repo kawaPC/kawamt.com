@@ -1,20 +1,27 @@
 import { getAllEntrySlugs, getEntry } from "utils/entryUtil";
-import { serialize } from "next-mdx-remote/serialize";
 import { GetStaticPaths, GetStaticProps } from "next";
-import { MDXRemote, MDXRemoteSerializeResult } from "next-mdx-remote";
 import { IEntry } from "types/entry";
+import { H1 } from "comoponents/Typography/H1";
+import { EntryDate } from "comoponents/EntryDate";
+import Head from "next/head";
+import { RehypeToReactElement } from "comoponents/RehypeToReactElement";
 
-type Props = {
-  source: MDXRemoteSerializeResult;
-  frontMatter: Omit<IEntry, "slug">;
-};
-
-const EntryPage: React.FC<Props> = ({ source, frontMatter }: Props) => {
+const EntryPage: React.FC<IEntry> = ({
+  title,
+  date,
+  formatDate,
+  contentSource,
+}) => {
   return (
     <article>
-      <h1>{frontMatter.title}</h1>
+      <Head>
+        <title>{title}</title>
+      </Head>
 
-      <MDXRemote {...source} />
+      <EntryDate date={date}>{formatDate}</EntryDate>
+      <H1>{title}</H1>
+
+      <RehypeToReactElement htmlSource={contentSource} />
     </article>
   );
 };
@@ -22,15 +29,10 @@ const EntryPage: React.FC<Props> = ({ source, frontMatter }: Props) => {
 export default EntryPage;
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const { content, data } = getEntry(params?.title as string);
-
-  const mdxSource = await serialize(content, { scope: data });
+  const entry = await getEntry(params?.title as string);
 
   return {
-    props: {
-      source: mdxSource,
-      frontMatter: data,
-    },
+    props: entry,
   };
 };
 

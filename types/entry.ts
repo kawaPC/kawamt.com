@@ -1,10 +1,16 @@
-import { MDXRemoteSerializeResult } from "next-mdx-remote";
-
 export type IEntry = {
   slug: string;
   date: string;
-  dateJa: string;
+  formatDate: string;
   title: string;
-  introductionSource: MDXRemoteSerializeResult;
+  contentSource: string;
+};
+
+export type IEntrySummary = {
+  slug: string;
+  date: string;
+  formatDate: string;
+  title: string;
+  introductionSource: string;
   isShort: boolean;
 };
