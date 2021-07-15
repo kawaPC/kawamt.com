@@ -17,6 +17,7 @@ const CustomImage: React.VFC<Props> = (props) => {
           src={props.src}
           width="500"
           height="350"
+          layout="fill"
           alt={props.alt}
           title={props.title}
         />
