@@ -58,3 +58,13 @@ hr {
     hover:text-gray-500
     hover:border-gray-500;
 }
+
+.amp-img-fixed-container {
+  height: 350px;
+  position: relative;
+  width: 100%;
+}
+
+amp-img.contain img {
+  object-fit: contain;
+}
