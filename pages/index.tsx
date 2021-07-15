@@ -1,42 +1,36 @@
 import { GetStaticProps } from "next";
-import { MDXRemote } from "next-mdx-remote";
 import Head from "next/head";
-import Link from "next/link";
-import { IEntry } from "types/entry";
+import { IEntrySummary } from "types/entry";
 import { SITE_NAME } from "types/constants";
 import { getAllEntrySummaries } from "utils/entryUtil";
+import React from "react";
+import { EntryDate } from "comoponents/EntryDate";
+import { Title } from "comoponents/Typography/Title";
+import { ReadMore } from "comoponents/Typography/ReadMore";
+import { RehypeToReactElement } from "comoponents/RehypeToReactElement";
 
 type Props = {
-  entries: IEntry[];
+  entries: IEntrySummary[];
 };
 
 const Home: React.FC<Props> = ({ entries }) => {
   return (
-    <div>
+    <section className="my-16">
       <Head>
         <title>{SITE_NAME}</title>
       </Head>
 
-      <h1>記事一覧</h1>
-
-      <ol reversed>
-        {entries.map((entry) => {
-          return (
-            <li key={entry.slug}>
-              <time dateTime={entry.date}>
-                <Link href={`/entry/${entry.slug}`}>{entry.dateJa}</Link>
-              </time>
-              <p>{entry.title}</p>
-              <MDXRemote {...entry.introductionSource} />
-              {!entry.isShort && (
-                <Link href={`/entry/${entry.slug}`}>続きを読む</Link>
-              )}
-              <hr />
-            </li>
-          );
-        })}
-      </ol>
-    </div>
+      {entries.map((entry) => {
+        return (
+          <article key={entry.slug} className="border-b-2">
+            <EntryDate date={entry.date}>{entry.formatDate}</EntryDate>
+            <Title href={`/entry/${entry.slug}`}>{entry.title}</Title>
+            <RehypeToReactElement htmlSource={entry.introductionSource} />
+            {!entry.isShort && <ReadMore href={`/entry/${entry.slug}`} />}
+          </article>
+        );
+      })}
+    </section>
   );
 };
 

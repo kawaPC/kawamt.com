@@ -1,9 +1,9 @@
 import { join } from "path";
 import fs from "fs";
 import matter from "gray-matter";
-import { formatKanjiYYYYMMDD } from "./dayjsUtil";
-import { IEntry } from "types/entry";
-import { serialize } from "next-mdx-remote/serialize";
+import { formatSlashYYYYMMDD } from "./dayjsUtil";
+import { IEntry, IEntrySummary } from "types/entry";
+import { markdownToHtml } from "./transpiler";
 
 const ENTRIES_PATH = join(process.cwd(), "entry/");
 
@@ -14,12 +14,11 @@ type Entry = {
   content: string;
 };
 
-export function getEntry(slug: string): Entry {
+function loadEntry(slug: string): Entry {
   const fullPath = join(ENTRIES_PATH, `${slug}.md`);
   const fileContents = fs.readFileSync(fullPath, "utf8");
-  const { data, content } = matter(fileContents);
 
-  return { data, content };
+  return matter(fileContents);
 }
 
 function getEntryFilePaths(): string[] {
@@ -34,31 +33,44 @@ function getDate(slug?: string): string {
   return regex ? regex[0] : "";
 }
 
-const getEntrySummary = async (filePath: string): Promise<IEntry> => {
+export const getEntry = async (slug: string): Promise<IEntry> => {
+  const { data, content } = loadEntry(slug);
+  const date = data.date || getDate(slug);
+
+  const contentSource = await markdownToHtml(content);
+
+  return {
+    slug,
+    date,
+    formatDate: formatSlashYYYYMMDD(date),
+    contentSource: contentSource,
+    title: data.title,
+  };
+};
+
+const getEntrySummary = async (filePath: string): Promise<IEntrySummary> => {
   const slug = filePath.replace(/\.md?$/, "");
-  const { data, content } = getEntry(slug);
+  const { data, content } = loadEntry(slug);
 
   const [introduction, body] = content.split("***");
-  const mdxIntroducion = await serialize(introduction, { scope: data });
+  const introductionSource = await markdownToHtml(introduction);
 
   const date = data.date || getDate(slug);
 
   return {
     slug,
     date,
-    dateJa: formatKanjiYYYYMMDD(date),
-    introductionSource: mdxIntroducion,
+    formatDate: formatSlashYYYYMMDD(date),
+    introductionSource: introductionSource,
     isShort: !body,
     title: data.title,
   };
 };
 
-export const getAllEntrySummaries = async (): Promise<IEntry[]> => {
+export const getAllEntrySummaries = async (): Promise<IEntrySummary[]> => {
   const filePaths = getEntryFilePaths();
 
-  const entriesPromise = filePaths.map((filePath) =>
-    getEntrySummary(filePath)
-  );
+  const entriesPromise = filePaths.map((filePath) => getEntrySummary(filePath));
 
   const entries = await Promise.all(entriesPromise);
 
@@ -68,7 +80,7 @@ export const getAllEntrySummaries = async (): Promise<IEntry[]> => {
 function getEntrySlugAndDate(filePath: string) {
   const slug = filePath.replace(/\.md?$/, "");
 
-  const { data } = getEntry(slug);
+  const { data } = loadEntry(slug);
 
   const date = data.date || getDate(slug);
 
