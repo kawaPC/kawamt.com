@@ -52,4 +52,4 @@ export const getStaticPaths: GetStaticPaths = async () => {
   };
 };
 
-export const config = { amp: false };
+export const config = { amp: true };
