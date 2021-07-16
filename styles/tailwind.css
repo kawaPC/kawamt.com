@@ -62,7 +62,6 @@ hr {
 .amp-img-fixed-container {
   height: 350px;
   position: relative;
-  width: 100%;
 }
 
 amp-img.contain img {
