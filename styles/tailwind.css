@@ -9,12 +9,14 @@
 /* Stop purging. */
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, Helvetica Neue, Segoe UI,
-    Hiragino Kaku Gothic ProN, Hiragino Sans, ヒラギノ角ゴ ProN W3, Arial,
-    メイリオ, Meiryo, sans-serif;
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+    Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif,
+    Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
 
   @apply text-sm
-    antialiased;
+    text-gray-800
+    antialiased
+    break-words;
 }
 
 p {
@@ -22,18 +24,44 @@ p {
 }
 
 h2 {
+  font-size: 1.375rem;
+  line-height: 1.75rem;
+  @apply font-bold
+    mt-6
+    mb-2;
+}
+
+h3 {
+  @apply text-xl
+    font-bold
+    mt-6
+    mb-2;
+}
+
+h4 {
   @apply text-lg
-    font-bold;
+    font-bold
+    mt-4
+    mb-2;
+}
+
+h5 {
+  @apply text-base
+    font-bold
+    mt-4
+    mb-2;
 }
 
 hr {
   @apply my-16;
 }
 
-.datebox {
-  margin: 60px auto 30px auto;
-  padding: 4px 0;
+.unorderedList li .customParagpraph {
+  margin-bottom: 0;
+  margin-top: 0;
+}
 
+.datebox {
   @apply w-28
     font-bold
     text-sm
@@ -67,3 +95,75 @@ hr {
 amp-img.contain img {
   object-fit: contain;
 }
+
+/*
+highlight.js ocean.css
+*/
+
+/* stylelint-disable */
+
+.hljs-comment,
+.hljs-quote {
+  color: #65737e;
+}
+
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+  color: #bf616a;
+}
+
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+  color: #d08770;
+}
+
+.hljs-attribute {
+  color: #ebcb8b;
+}
+
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+  color: #a3be8c;
+}
+
+.hljs-title,
+.hljs-section {
+  color: #8fa1b3;
+}
+
+.hljs-keyword,
+.hljs-selector-tag {
+  color: #b48ead;
+}
+
+.hljs {
+  display: block;
+  overflow-x: auto;
+  background: #2b303b;
+  color: #c0c5ce;
+  padding: 0.5em;
+}
+
+.hljs-emphasis {
+  font-style: italic;
+}
+
+.hljs-strong {
+  font-weight: bold;
+}
+
+/* stylelint-enable */

@@ -15,16 +15,21 @@ type Props = {
 
 const Home: React.FC<Props> = ({ entries }) => {
   return (
-    <section className="my-16">
+    <section className="space-y-20 mt-10">
       <Head>
         <title>{SITE_NAME}</title>
       </Head>
 
       {entries.map((entry) => {
         return (
-          <article key={entry.slug} className="border-b-2">
+          <article
+            key={entry.slug}
+            className="border-b-2 last:border-b-0 pb-16"
+          >
             <EntryDate date={entry.date}>{entry.formatDate}</EntryDate>
-            <Title href={`/entry/${entry.slug}`}>{entry.title}</Title>
+            {entry.title && (
+              <Title href={`/entry/${entry.slug}`}>{entry.title}</Title>
+            )}
             <RehypeToReactElement htmlSource={entry.introductionSource} />
             {!entry.isShort && <ReadMore href={`/entry/${entry.slug}`} />}
           </article>

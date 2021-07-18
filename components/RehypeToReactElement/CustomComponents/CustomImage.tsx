@@ -10,7 +10,7 @@ type Props = {
 const CustomImage: React.VFC<Props> = (props) => {
   const isAmp = useAmp();
   return (
-    <div className="flex justify-center flex-col mb-5">
+    <div className="flex justify-center flex-col mb-5 img">
       {isAmp ? (
         <figure className="amp-img-fixed-container">
           <amp-img

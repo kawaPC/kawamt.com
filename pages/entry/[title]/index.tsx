@@ -13,13 +13,13 @@ const EntryPage: React.FC<IEntry> = ({
   contentSource,
 }) => {
   return (
-    <article>
+    <article className="space-y-5 mt-10">
       <Head>
-        <title>{title}</title>
+        <title>{title || formatDate}</title>
       </Head>
 
       <EntryDate date={date}>{formatDate}</EntryDate>
-      <H1>{title}</H1>
+      {title && <H1>{title}</H1>}
 
       <RehypeToReactElement htmlSource={contentSource} />
     </article>

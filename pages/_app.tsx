@@ -1,12 +1,12 @@
-// import "../styles/globals.css";
-
+import { Header } from "components/Header";
 import type { AppProps } from "next/app";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <div>
-      <header className="py-4">header</header>
-      <main className="max-w-4xl mx-auto p-5">
+    <div className="container mx-auto p-3 md:pt-8 md:p-5 max-w-4xl">
+      <Header />
+
+      <main>
         <Component {...pageProps} />
       </main>
     </div>
