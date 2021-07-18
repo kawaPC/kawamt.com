@@ -105,7 +105,11 @@ highlight.js Visual Studio 2015 dark style vs2015.css
 
 .hljs {
   display: block;
-  overflow-x: auto;
+  overflow: auto;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
   padding: 0.5em;
   background: #1e1e1e;
   color: #dcdcdc;
