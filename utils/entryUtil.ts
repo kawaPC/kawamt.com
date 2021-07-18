@@ -44,7 +44,7 @@ export const getEntry = async (slug: string): Promise<IEntry> => {
     date,
     formatDate: formatSlashYYYYMMDD(date),
     contentSource: contentSource,
-    title: data.title,
+    title: data.title || null,
   };
 };
 
@@ -63,7 +63,7 @@ const getEntrySummary = async (filePath: string): Promise<IEntrySummary> => {
     formatDate: formatSlashYYYYMMDD(date),
     introductionSource: introductionSource,
     isShort: !body,
-    title: data.title,
+    title: data.title || null,
   };
 };
 
@@ -74,7 +74,9 @@ export const getAllEntrySummaries = async (): Promise<IEntrySummary[]> => {
 
   const entries = await Promise.all(entriesPromise);
 
-  return entries;
+  return entries.sort((entry1, entry2) =>
+    Date.parse(entry1.date) > Date.parse(entry2.date) ? -1 : 1
+  );
 };
 
 function getEntrySlugAndDate(filePath: string) {
