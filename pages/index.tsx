@@ -47,4 +47,4 @@ export const getStaticProps: GetStaticProps = async () => {
   return { props: { entries }, revalidate: 10 };
 };
 
-export const config = { amp: "hybrid" };
+export const config = { amp: true };
