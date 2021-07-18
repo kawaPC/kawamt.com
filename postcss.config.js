@@ -11,7 +11,9 @@ module.exports = {
   plugins: [
     require("tailwindcss"),
     require("autoprefixer"),
-    require("@fullhuman/postcss-purgecss")(purgecssOption),
+    process.env.CSS_ENV === "production"
+      ? require("@fullhuman/postcss-purgecss")(purgecssOption)
+      : undefined,
     require("cssnano")({
       preset: "default",
     }),
