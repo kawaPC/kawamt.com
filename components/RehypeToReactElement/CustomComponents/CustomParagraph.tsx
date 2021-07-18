@@ -1,9 +1,5 @@
-type Props = {
-  children: string;
-};
-
-const CustomParagraph: React.VFC<Props> = ({ children }) => {
-  return <div className="my-6 leading-7 customParagpraph">{children}</div>;
+const CustomParagraph: React.FC = ({ children }) => {
+  return <div className="mt-5 leading-7 paragpraph">{children}</div>;
 };
 
 export { CustomParagraph };

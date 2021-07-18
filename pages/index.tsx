@@ -15,7 +15,7 @@ type Props = {
 
 const Home: React.FC<Props> = ({ entries }) => {
   return (
-    <section className="space-y-20 mt-10">
+    <section className="space-y-16 mt-10">
       <Head>
         <title>{SITE_NAME}</title>
       </Head>
@@ -47,4 +47,4 @@ export const getStaticProps: GetStaticProps = async () => {
   return { props: { entries }, revalidate: 10 };
 };
 
-export const config = { amp: true };
+export const config = { amp: "hybrid" };

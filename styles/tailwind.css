@@ -19,10 +19,6 @@ body {
     break-words;
 }
 
-p {
-  @apply my-6;
-}
-
 h2 {
   font-size: 1.375rem;
   line-height: 1.75rem;
@@ -56,25 +52,9 @@ hr {
   @apply my-16;
 }
 
-.unorderedList li .customParagpraph {
+.unorderedList li .paragpraph {
   margin-bottom: 0;
   margin-top: 0;
-}
-
-.datebox {
-  @apply w-28
-    font-bold
-    text-sm
-    text-white
-    text-center
-    leading-6
-    rounded-sm
-    bg-gray-900;
-}
-
-.readMore {
-  margin: 3rem auto 1.8rem auto;
-  @apply w-20;
 }
 
 .link {
@@ -87,7 +67,7 @@ hr {
     hover:border-gray-500;
 }
 
-.amp-img-fixed-container {
+.ampImgFixedContainer {
   height: 350px;
   position: relative;
 }
