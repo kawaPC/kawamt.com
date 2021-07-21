@@ -25,6 +25,7 @@
     "eslint": "7.30.0",
     "eslint-config-next": "11.0.1",
     "gray-matter": "^4.0.3",
+    "image-size": "^1.0.0",
     "postcss": "^8.3.5",
     "postcss-cli": "^8.3.1",
     "postcss-preset-env": "^6.7.0",
@@ -35,11 +36,12 @@
     "remark-breaks": "^2.0.2",
     "remark-parse": "^9.0.0",
     "remark-rehype": "^8.1.0",
-    "tailwindcss": "^2.2.4",
-    "unified": "^9.2.1",
     "stylelint": "^13.13.1",
     "stylelint-config-recommended": "^5.0.0",
     "stylelint-order": "^4.1.0",
-    "typescript": "4.3.5"
+    "tailwindcss": "^2.2.4",
+    "typescript": "4.3.5",
+    "unified": "^9.2.1",
+    "unist-util-visit": "^2.0.2"
   }
 }

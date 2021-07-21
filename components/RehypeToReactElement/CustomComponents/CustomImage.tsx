@@ -5,38 +5,48 @@ type Props = {
   src: string;
   alt?: string;
   title?: string;
+  width?: string;
+  height?: string;
 };
 
-const CustomImage: React.VFC<Props> = (props) => {
+const CustomImage: React.VFC<Props> = ({ src, alt, title, width, height }) => {
   const isAmp = useAmp();
   return (
-    <div className="flex justify-center flex-col mt-5 img">
+    <div className="flex flex-col mt-5 img">
       {isAmp ? (
-        <figure className="ampImgFixedContainer">
+        <figure
+          className={
+            width && height
+              ? "flex justify-center max-h-96 w-full"
+              : "ampImgFixedContainer"
+          }
+        >
           <amp-img
             className="contain"
-            src={props.src}
-            layout="fill"
-            alt={props.alt}
-            title={props.title}
+            src={src}
+            layout={width && height ? "intrinsic" : "fill"}
+            alt={alt}
+            title={title}
+            width={width}
+            height={height}
           />
         </figure>
       ) : (
-        <figure className="flex justify-center">
+        <figure className="flex justify-center max-h-96">
           <Image
-            src={props.src}
-            alt={props.alt}
-            title={props.title}
-            width="500"
-            height="350"
+            src={src}
+            alt={alt}
+            title={title}
+            width={width || 500}
+            height={height || 384}
             loading="lazy"
             objectFit={"contain"}
           />
         </figure>
       )}
-      {props.title && (
+      {title && (
         <figcaption className="text-center text-xs text-gray-600 mt-1">
-          {props.title}
+          {title}
         </figcaption>
       )}
     </div>
