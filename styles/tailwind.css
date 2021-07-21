@@ -52,6 +52,10 @@ hr {
   @apply my-16;
 }
 
+img {
+  image-rendering: -webkit-optimize-contrast;
+}
+
 .unorderedList li .paragpraph {
   margin-bottom: 0;
   margin-top: 0;
