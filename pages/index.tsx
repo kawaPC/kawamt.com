@@ -44,7 +44,7 @@ export default Home;
 export const getStaticProps: GetStaticProps = async () => {
   const entries = await getAllEntrySummaries();
 
-  return { props: { entries }, revalidate: 10 };
+  return { props: { entries } };
 };
 
 export const config = { amp: true };
