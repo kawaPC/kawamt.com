@@ -56,6 +56,13 @@ img {
   image-rendering: -webkit-optimize-contrast;
 }
 
+:not(pre) > code {
+  padding: 0px 3px;
+
+  @apply text-gray-900
+    bg-gray-200;
+}
+
 .unorderedList li .paragpraph {
   margin-bottom: 0;
   margin-top: 0;
