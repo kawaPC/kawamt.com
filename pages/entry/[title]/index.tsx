@@ -51,4 +51,4 @@ export const getStaticPaths: GetStaticPaths = async () => {
   };
 };
 
-export const config = { amp: true };
+export const config = { amp: "hybrid" };
