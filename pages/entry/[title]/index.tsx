@@ -7,6 +7,7 @@ import Head from "next/head";
 import { RehypeToReactElement } from "components/RehypeToReactElement";
 
 const EntryPage: React.FC<IEntry> = ({
+  slug,
   title,
   date,
   formatDate,
@@ -18,7 +19,9 @@ const EntryPage: React.FC<IEntry> = ({
         <title>{title || formatDate}</title>
       </Head>
 
-      <EntryDate date={date}>{formatDate}</EntryDate>
+      <EntryDate date={date} href={`/entry/${slug}`}>
+        {formatDate}
+      </EntryDate>
       {title && <H1>{title}</H1>}
 
       <RehypeToReactElement htmlSource={contentSource} />

@@ -21,15 +21,17 @@ const Home: React.FC<Props> = ({ entries }) => {
       </Head>
 
       {entries.map((entry) => {
+        const entryPath = `/entry/${entry.slug}`;
+
         return (
           <article
             key={entry.slug}
             className="border-b-2 last:border-b-0 pb-16"
           >
-            <EntryDate date={entry.date}>{entry.formatDate}</EntryDate>
-            {entry.title && (
-              <Title href={`/entry/${entry.slug}`}>{entry.title}</Title>
-            )}
+            <EntryDate date={entry.date} href={entryPath}>
+              {entry.formatDate}
+            </EntryDate>
+            {entry.title && <Title href={entryPath}>{entry.title}</Title>}
             <RehypeToReactElement htmlSource={entry.introductionSource} />
             {!entry.isShort && <ReadMore href={`/entry/${entry.slug}`} />}
           </article>
