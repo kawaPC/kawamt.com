@@ -6,7 +6,7 @@ import { getAllEntrySummaries } from "utils/entryUtil";
 import React from "react";
 import { EntryDate } from "components/EntryDate";
 import { Title } from "components/Typography/Title";
-import { ReadMore } from "components/Typography/ReadMore";
+import { ReadMore } from "components/ReadMore";
 import { RehypeToReactElement } from "components/RehypeToReactElement";
 
 type Props = {
