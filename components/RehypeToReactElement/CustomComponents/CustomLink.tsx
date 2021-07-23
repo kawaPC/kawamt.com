@@ -13,7 +13,7 @@ const CustomLink: React.VFC<Props> = ({ children, href }) =>
   ) : (
     <a
       href={href}
-      className="underline font-medium text-blue-600 hover:text-blue-900"
+      className="underline font-medium text-blue-600"
       target="_blank"
       rel="noopener noreferrer"
     >

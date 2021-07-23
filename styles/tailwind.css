@@ -14,14 +14,16 @@
 
 body {
   font-family: sans-serif;
-
-  font-feature-settings: "palt";
+  font-feature-settings: "pwid";
 
   @apply text-sm
-    text-gray-800
+    text-gray-700
     tracking-wider
-    antialiased
     break-words;
+}
+
+a {
+  @apply hover:opacity-70;
 }
 
 h2 {
@@ -67,23 +69,12 @@ img {
   padding: 0px 3px;
 
   @apply text-gray-900
-    tracking-normal
     bg-gray-200;
 }
 
 .unorderedList li .paragpraph {
   margin-bottom: 0;
   margin-top: 0;
-}
-
-.link {
-  @apply text-base
-    font-bold
-    pb-1
-    border-b-2
-    border-gray-800
-    hover:text-gray-500
-    hover:border-gray-500;
 }
 
 .ampImgFixedContainer {

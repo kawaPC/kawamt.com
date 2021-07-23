@@ -9,7 +9,7 @@ const Title: React.FC<Props> = ({ href, children }) => {
     <div className="text-center text-2xl font-bold mt-5">
       {href ? (
         <Link href={href}>
-          <a className="hover:text-gray-500">{children}</a>
+          <a>{children}</a>
         </Link>
       ) : (
         children
