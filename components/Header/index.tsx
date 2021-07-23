@@ -7,10 +7,10 @@ const Header: React.VFC = () => {
         <Link href="/">kawamt.com</Link>
       </div>
       <nav className="space-x-5 text-gray-700 mt-4 md:mt-0">
-        <Link href="/">About</Link>
-        <Link href="/">検索</Link>
-        <Link href="/">写真</Link>
-        <Link href="/">リンク</Link>
+        <Link href="/about">About</Link>
+        <Link href="https://www.google.com/search?q=site:kawamt.com">検索</Link>
+        <Link href="/photos">写真</Link>
+        <Link href="/links">リンク</Link>
       </nav>
     </header>
   );
