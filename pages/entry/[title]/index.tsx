@@ -3,21 +3,27 @@ import { GetStaticPaths, GetStaticProps } from "next";
 import { IEntry } from "types/entry";
 import { H1 } from "components/Typography/H1";
 import { EntryDate } from "components/EntryDate";
-import Head from "next/head";
 import { RehypeToReactElement } from "components/RehypeToReactElement";
+import { AppHead } from "components/AppHead";
 
 const EntryPage: React.FC<IEntry> = ({
   slug,
+  entryUrl,
   title,
+  ogImage,
+  description,
   date,
   formatDate,
   contentSource,
 }) => {
   return (
     <article className="space-y-5 mt-10">
-      <Head>
-        <title>{title || formatDate}</title>
-      </Head>
+      <AppHead
+        url={entryUrl}
+        title={title || slug}
+        description={description}
+        ogImage={ogImage}
+      />
 
       <EntryDate date={date} href={`/entry/${slug}`}>
         {formatDate}

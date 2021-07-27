@@ -4,12 +4,15 @@ import matter from "gray-matter";
 import { formatSlashYYYYMMDD } from "./dayjsUtil";
 import { IEntry, IEntrySummary } from "types/entry";
 import { markdownToHtml } from "./transpiler";
+import removeMarkdown from "remove-markdown";
+import { APP_ROOT } from "types/constants";
 
 const ENTRIES_PATH = join(process.cwd(), "entry/");
 
 type Entry = {
   data: {
-    [key: string]: string;
+    title?: string;
+    date?: string;
   };
   content: string;
 };
@@ -37,14 +40,24 @@ export const getEntry = async (slug: string): Promise<IEntry> => {
   const { data, content } = loadEntry(slug);
   const date = data.date || getDate(slug);
 
+  const plainText = removeMarkdown(content, { useImgAltText: false });
+  const description = plainText.replace(/\n/g, "").substr(0, 120);
+  const ogImageRegex = content.match(/http.*png|jpg/);
+  const ogImage = ogImageRegex ? ogImageRegex[0] : undefined;
+
   const contentSource = await markdownToHtml(content);
+
+  const entryUrl = `${APP_ROOT}/entry/${slug}`;
 
   return {
     slug,
+    entryUrl,
     date,
+    description,
+    ogImage,
     formatDate: formatSlashYYYYMMDD(date),
     contentSource: contentSource,
-    title: data.title || null,
+    title: data.title,
   };
 };
 
@@ -63,7 +76,7 @@ const getEntrySummary = async (filePath: string): Promise<IEntrySummary> => {
     formatDate: formatSlashYYYYMMDD(date),
     introductionSource: introductionSource,
     isShort: !body,
-    title: data.title || null,
+    title: data.title,
   };
 };
 

@@ -1,13 +1,12 @@
 import { GetStaticProps } from "next";
-import Head from "next/head";
 import { IEntrySummary } from "types/entry";
-import { SITE_NAME } from "types/constants";
 import { getAllEntrySummaries } from "utils/entryUtil";
 import React from "react";
 import { EntryDate } from "components/EntryDate";
 import { Title } from "components/Typography/Title";
 import { ReadMore } from "components/ReadMore";
 import { RehypeToReactElement } from "components/RehypeToReactElement";
+import { AppHead } from "components/AppHead";
 
 type Props = {
   entries: IEntrySummary[];
@@ -16,9 +15,7 @@ type Props = {
 const Home: React.FC<Props> = ({ entries }) => {
   return (
     <section className="space-y-16 mt-10">
-      <Head>
-        <title>{SITE_NAME}</title>
-      </Head>
+      <AppHead title="記事一覧" description="記事一覧" />
 
       {entries.map((entry) => {
         const entryPath = `/entry/${entry.slug}`;
