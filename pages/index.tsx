@@ -15,7 +15,7 @@ type Props = {
 const Home: React.FC<Props> = ({ entries }) => {
   return (
     <section className="space-y-16 mt-10">
-      <AppHead title="記事一覧" description="記事一覧" />
+      <AppHead description="記事一覧" />
 
       {entries.map((entry) => {
         const entryPath = `/entry/${entry.slug}`;
