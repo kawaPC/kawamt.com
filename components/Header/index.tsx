@@ -8,8 +8,8 @@ const Header: React.VFC = () => {
       </div>
       <nav className="space-x-5 text-gray-700 mt-4 md:mt-0">
         <Link href="/about">About</Link>
-        <Link href="https://www.google.com/search?q=site:kawamt.com">検索</Link>
-        <Link href="/photos">写真</Link>
+        <a href="https://www.google.com/search?q=site:kawamt.com">検索</a>
+        <a href="https://umebosh.tumblr.com">写真</a>
         <Link href="/links">リンク</Link>
       </nav>
     </header>
