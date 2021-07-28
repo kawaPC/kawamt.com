@@ -1,5 +1,5 @@
 import Head from "next/head";
-import { APP_ROOT, SITE_NAME } from "types/constants";
+import { APP_ROOT, SITE_DESCRIPTION, SITE_NAME } from "types/constants";
 
 type Props = {
   title?: string;
@@ -12,9 +12,13 @@ const AppHead: React.FC<Props> = ({ title, description, url, ogImage }) => {
   return (
     <Head>
       <title>{title}</title>
+      <meta property="description" content={description || SITE_DESCRIPTION} />
       <meta property="og:site_name" content={SITE_NAME} />
       <meta property="og:title" content={title ?? SITE_NAME} />
-      <meta property="og:description" content={description ?? ""} />
+      <meta
+        property="og:description"
+        content={description ?? SITE_DESCRIPTION}
+      />
       <meta property="og:url" content={url || APP_ROOT} />
       <meta name="twitter:card" content="summary_large_image" />
       <meta
