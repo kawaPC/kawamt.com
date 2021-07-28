@@ -15,7 +15,7 @@ type Props = {
 const Home: React.FC<Props> = ({ entries }) => {
   return (
     <section className="space-y-16 mt-10">
-      <AppHead description="記事一覧" />
+      <AppHead />
 
       {entries.map((entry) => {
         const entryPath = `/entry/${entry.slug}`;
@@ -46,4 +46,4 @@ export const getStaticProps: GetStaticProps = async () => {
   return { props: { entries } };
 };
 
-export const config = { amp: true };
+export const config = { amp: "hybrid" };
