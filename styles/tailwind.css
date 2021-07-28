@@ -17,6 +17,7 @@ body {
   font-feature-settings: "pwid";
 
   @apply text-sm
+    leading-7
     text-gray-700
     tracking-wider
     break-words;
