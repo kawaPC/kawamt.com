@@ -31,6 +31,7 @@
     "postcss-cli": "^8.3.1",
     "postcss-preset-env": "^6.7.0",
     "raw-loader": "^4.0.2",
+    "rehype-external-imsize": "kawaPC/rehype-external-imsize.git",
     "rehype-parse": "^7.0.1",
     "rehype-react": "^6.2.1",
     "rehype-stringify": "^8.0.0",
