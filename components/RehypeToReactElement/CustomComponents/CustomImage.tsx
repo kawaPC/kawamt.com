@@ -17,7 +17,7 @@ const CustomImage: React.VFC<Props> = ({ src, alt, title, width, height }) => {
         <figure
           className={
             width && height
-              ? "flex justify-center max-h-96 w-full"
+              ? "flex flex-col justify-center max-h-96 w-full"
               : "ampImgFixedContainer"
           }
         >
@@ -30,6 +30,11 @@ const CustomImage: React.VFC<Props> = ({ src, alt, title, width, height }) => {
             width={width}
             height={height}
           />
+          {title && (
+            <figcaption className="text-center text-xs text-gray-600 mt-2">
+              {title}
+            </figcaption>
+          )}
         </figure>
       ) : (
         <figure className="flex flex-col justify-center max-h-96">
