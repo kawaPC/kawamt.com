@@ -19,7 +19,7 @@ const CustomYotubeIframe: React.VFC<Props> = ({
 }) => {
   const isAmp = useAmp();
   return (
-    <div className="text-center">
+    <div className="text-center py-4">
       {isAmp ? (
         <amp-youtube
           data-videoid={videoid}

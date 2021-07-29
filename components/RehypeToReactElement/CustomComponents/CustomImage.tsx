@@ -32,7 +32,7 @@ const CustomImage: React.VFC<Props> = ({ src, alt, title, width, height }) => {
           />
         </figure>
       ) : (
-        <figure className="flex justify-center max-h-96">
+        <figure className="flex flex-col justify-center max-h-96">
           <Image
             src={src}
             alt={alt}
@@ -42,12 +42,12 @@ const CustomImage: React.VFC<Props> = ({ src, alt, title, width, height }) => {
             loading="lazy"
             objectFit={"contain"}
           />
+          {title && (
+            <figcaption className="text-center text-xs text-gray-600 mt-2">
+              {title}
+            </figcaption>
+          )}
         </figure>
-      )}
-      {title && (
-        <figcaption className="text-center text-xs text-gray-600 mt-1">
-          {title}
-        </figcaption>
       )}
     </div>
   );
