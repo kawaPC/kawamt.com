@@ -28,7 +28,23 @@ declare namespace JSX {
     tabindex?: string;
   }
 
+  interface AmpYoutube extends ReactAmp {
+    children?: React.ReactNode;
+    "data-videoid": string;
+    dataLiveChannelid?: string;
+    width: string;
+    height: string;
+    layout?:
+      | "fill"
+      | "fixed"
+      | "fixed-height"
+      | "flex-item"
+      | "nodisplay"
+      | "responsive";
+  }
+
   interface IntrinsicElements {
     "amp-img": AmpImg;
+    "amp-youtube": AmpYoutube;
   }
 }

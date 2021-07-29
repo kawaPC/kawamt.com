@@ -4781,6 +4781,13 @@ remark-stringify@^9.0.0:
   dependencies:
     mdast-util-to-markdown "^0.6.0"
 
+remark-youtube-embed@kawaPC/remark-youtube-embed.git:
+  version "1.0.0"
+  resolved "https://codeload.github.com/kawaPC/remark-youtube-embed/tar.gz/fe571b517bb7ae3cf0970d4997e8a34291d612c8"
+  dependencies:
+    unified "^9.2.0"
+    unist-util-visit "^2.0.3"
+
 remark@^13.0.0:
   version "13.0.0"
   resolved "https://registry.yarnpkg.com/remark/-/remark-13.0.0.tgz#d15d9bf71a402f40287ebe36067b66d54868e425"

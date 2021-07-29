@@ -6,11 +6,13 @@ import breaks from "remark-breaks";
 // @ts-ignore
 import rehypePrism from "@mapbox/rehype-prism";
 import rehypeImsize from "rehype-external-imsize";
+import remarkYoutubeEmbed from "remark-youtube-embed";
 
 export const markdownToHtml = async (markdown: string) => {
   const result = await unified()
     .use(remarkParse)
     .use(breaks)
+    .use(remarkYoutubeEmbed)
     .use(remarkRehype)
     .use(rehypeImsize, { maxBufferLengths: 1000 })
     .use(rehypePrism)
