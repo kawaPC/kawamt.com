@@ -49,7 +49,7 @@ export const getEntry = async (slug: string): Promise<IEntry> => {
 
   const entryUrl = `${APP_ROOT}/entry/${slug}`;
 
-  return {
+  const entry = {
     slug,
     entryUrl,
     date,
@@ -59,6 +59,8 @@ export const getEntry = async (slug: string): Promise<IEntry> => {
     contentSource: contentSource,
     title: data.title,
   };
+
+  return JSON.parse(JSON.stringify(entry));
 };
 
 const getEntrySummary = async (filePath: string): Promise<IEntrySummary> => {
@@ -70,7 +72,7 @@ const getEntrySummary = async (filePath: string): Promise<IEntrySummary> => {
 
   const date = data.date || getDate(slug);
 
-  return {
+  const entry = {
     slug,
     date,
     formatDate: formatSlashYYYYMMDD(date),
@@ -78,6 +80,8 @@ const getEntrySummary = async (filePath: string): Promise<IEntrySummary> => {
     isShort: !body,
     title: data.title,
   };
+
+  return JSON.parse(JSON.stringify(entry));
 };
 
 export const getAllEntrySummaries = async (): Promise<IEntrySummary[]> => {
