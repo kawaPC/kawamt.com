@@ -31,7 +31,15 @@ class MyDocument extends Document {
     return (
       <Html lang="ja">
         <Head>
+          <link rel="manifest" href="/manifest.webmanifest" />
           <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+          <link rel="icon" href="/favicon.ico" />
+          <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+          <link
+            rel="icon"
+            type="image/png"
+            href="/android-chrome-192x192.png"
+          />
         </Head>
         <body>
           <Main />
