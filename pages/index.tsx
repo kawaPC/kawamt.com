@@ -30,7 +30,9 @@ const Home: React.FC<Props> = ({ entries }) => {
             </EntryDate>
             {entry.title && <Title href={entryPath}>{entry.title}</Title>}
             <RehypeToReactElement htmlSource={entry.introductionSource} />
-            {!entry.isShort && <ReadMore href={`/entry/${entry.slug}`} />}
+            {!entry.isShort && (
+              <ReadMore title={entry.title} slug={entry.slug} />
+            )}
           </article>
         );
       })}
