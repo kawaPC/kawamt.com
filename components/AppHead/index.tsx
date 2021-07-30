@@ -12,7 +12,8 @@ const AppHead: React.FC<Props> = ({ title, description, url, ogImage }) => {
   return (
     <Head>
       <title>{title || SITE_NAME}</title>
-      <meta property="description" content={description || SITE_DESCRIPTION} />
+      <meta name="description" content={description || SITE_DESCRIPTION} />
+      <link rel="canonical" href={url || APP_ROOT} />
       <meta property="og:site_name" content={SITE_NAME} />
       <meta property="og:title" content={title ?? SITE_NAME} />
       <meta
