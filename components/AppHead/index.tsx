@@ -11,7 +11,7 @@ type Props = {
 const AppHead: React.FC<Props> = ({ title, description, url, ogImage }) => {
   return (
     <Head>
-      <title>{title}</title>
+      <title>{title || SITE_NAME}</title>
       <meta property="description" content={description || SITE_DESCRIPTION} />
       <meta property="og:site_name" content={SITE_NAME} />
       <meta property="og:title" content={title ?? SITE_NAME} />
