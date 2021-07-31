@@ -14,7 +14,7 @@ export const markdownToHtml = async (markdown: string) => {
     .use(breaks)
     .use(remarkYoutubeEmbed)
     .use(remarkRehype)
-    .use(rehypeImsize, { maxBufferLengths: 1000 })
+    .use(rehypeImsize)
     .use(rehypePrism)
     .use(rehypeStringify)
     .process(markdown);
