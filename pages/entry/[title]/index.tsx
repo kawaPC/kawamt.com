@@ -1,15 +1,16 @@
 import { getAllEntrySlugs, getEntry } from "utils/entryUtil";
 import { GetStaticPaths, GetStaticProps } from "next";
 import { IEntry } from "types/entry";
-import { H1 } from "components/Typography/H1";
 import { EntryDate } from "components/EntryDate";
 import { RehypeToReactElement } from "components/RehypeToReactElement";
 import { AppHead } from "components/AppHead";
+import { EntryTags } from "components/EntryTags";
 
 const EntryPage: React.FC<IEntry> = ({
   slug,
   entryUrl,
   title,
+  tags,
   ogImage,
   description,
   date,
@@ -17,7 +18,7 @@ const EntryPage: React.FC<IEntry> = ({
   contentSource,
 }) => {
   return (
-    <article className="space-y-5 mt-10">
+    <article className="mt-10">
       <AppHead
         url={entryUrl}
         title={title || slug}
@@ -28,7 +29,8 @@ const EntryPage: React.FC<IEntry> = ({
       <EntryDate date={date} href={`/entry/${slug}`}>
         {formatDate}
       </EntryDate>
-      {title && <H1>{title}</H1>}
+      {title && <h1 className="text-2xl">{title}</h1>}
+      {tags && <EntryTags tags={tags} />}
 
       <RehypeToReactElement htmlSource={contentSource} />
     </article>

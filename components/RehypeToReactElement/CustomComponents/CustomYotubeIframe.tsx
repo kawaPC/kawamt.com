@@ -22,6 +22,7 @@ const CustomYotubeIframe: React.VFC<Props> = ({
     <div className="text-center py-4">
       {isAmp ? (
         <amp-youtube
+          className="max-w-full"
           data-videoid={videoid}
           layout="fixed"
           width={width}
@@ -29,7 +30,7 @@ const CustomYotubeIframe: React.VFC<Props> = ({
         />
       ) : (
         <iframe
-          className="mx-auto"
+          className="inline max-w-full"
           src={src}
           width={width}
           height={height}

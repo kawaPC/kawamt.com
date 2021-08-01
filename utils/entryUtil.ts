@@ -6,6 +6,7 @@ import { IEntry, IEntrySummary } from "types/entry";
 import { markdownToHtml } from "./transpiler";
 import removeMarkdown from "remove-markdown";
 import { APP_ROOT } from "types/constants";
+import "utils/arrayExtensions";
 
 const ENTRIES_PATH = join(process.cwd(), "entry/");
 
@@ -13,6 +14,7 @@ type Entry = {
   data: {
     title?: string;
     date?: string;
+    tags?: string[];
   };
   content: string;
 };
@@ -58,6 +60,7 @@ export const getEntry = async (slug: string): Promise<IEntry> => {
     formatDate: formatSlashYYYYMMDD(date),
     contentSource: contentSource,
     title: data.title,
+    tags: data.tags,
   };
 
   return JSON.parse(JSON.stringify(entry));
@@ -79,6 +82,7 @@ const getEntrySummary = async (filePath: string): Promise<IEntrySummary> => {
     introductionSource: introductionSource,
     isShort: !body,
     title: data.title,
+    tags: data.tags,
   };
 
   return JSON.parse(JSON.stringify(entry));
@@ -96,6 +100,22 @@ export const getAllEntrySummaries = async (): Promise<IEntrySummary[]> => {
   );
 };
 
+export const getTaggedEntrySummaries = async (
+  tag: string
+): Promise<IEntrySummary[]> => {
+  const filePaths = getEntryFilePaths();
+
+  const entriesPromise = filePaths.map((filePath) => getEntrySummary(filePath));
+
+  const entries = await Promise.all(entriesPromise);
+
+  return entries
+    .filter((entry) => entry.tags?.includes(tag))
+    .sort((entry1, entry2) =>
+      Date.parse(entry1.date) > Date.parse(entry2.date) ? -1 : 1
+    );
+};
+
 function getEntrySlugAndDate(filePath: string) {
   const slug = filePath.replace(/\.md?$/, "");
 
@@ -104,6 +124,14 @@ function getEntrySlugAndDate(filePath: string) {
   const date = data.date || getDate(slug);
 
   return { slug, date };
+}
+
+function getEntryTags(filePath: string) {
+  const slug = filePath.replace(/\.md?$/, "");
+
+  const { data } = loadEntry(slug);
+
+  return { tags: data.tags || [] };
 }
 
 export function getAllEntrySlugs(): string[] {
@@ -115,4 +143,14 @@ export function getAllEntrySlugs(): string[] {
     )
     .map((entry) => entry.slug);
   return slugs;
+}
+
+export function getAllEntryTags(): string[] {
+  const filePaths = getEntryFilePaths();
+  const tags = filePaths
+    .map((filePath) => getEntryTags(filePath))
+    .flatMap((entry) => entry.tags)
+    .uniq();
+
+  return tags;
 }

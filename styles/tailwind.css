@@ -13,10 +13,10 @@
 /*! purgecss start ignore */
 
 body {
-  font-family: sans-serif;
   font-feature-settings: "pwid";
 
-  @apply text-sm
+  @apply font-sans
+    text-sm
     leading-7
     text-gray-700
     tracking-wider

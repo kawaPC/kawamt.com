@@ -6,6 +6,7 @@ export type IEntry = {
   ogImage?: string;
   formatDate: string;
   title?: string;
+  tags?: string[];
   contentSource: string;
 };
 
@@ -14,6 +15,7 @@ export type IEntrySummary = {
   date: string;
   formatDate: string;
   title?: string;
+  tags?: string[];
   introductionSource: string;
   isShort: boolean;
 };

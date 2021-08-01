@@ -6,7 +6,7 @@ type Props = {
 
 const Title: React.FC<Props> = ({ href, children }) => {
   return (
-    <div className="text-center text-2xl font-bold mt-5">
+    <div className="text-2xl">
       {href ? (
         <Link href={href}>
           <a>{children}</a>
