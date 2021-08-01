@@ -18,8 +18,8 @@ const TagsEntryPage: React.FC<Props> = ({ tag, tagsEntryPath, entries }) => {
     <section className="space-y-16 mt-10">
       <AppHead
         url={`${APP_ROOT}${tagsEntryPath}`}
-        title={`${tag}の記事一覧`}
-        description={`${tag}の記事一覧`}
+        title={`記事一覧 [${tag}]`}
+        description={`記事一覧 [${tag}]`}
       />
 
       <h1 className="text-center text-gray-600">
