@@ -8,7 +8,7 @@ type Props = {
 const CustomLink: React.VFC<Props> = ({ children, href }) =>
   href.startsWith("/") || href === "" ? (
     <Link href={href} prefetch={false}>
-      <a className="underline">{children}</a>
+      <a className="underline font-medium text-blue-600">{children}</a>
     </Link>
   ) : (
     <a
