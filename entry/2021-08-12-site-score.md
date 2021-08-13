@@ -7,10 +7,10 @@ tags: ['programming']
 
 このブログのLighthouseスコアを貼っておく。
 
-このサイトはAMP Validな実装になっているが、当のAMP scriptがUnused Javascriptとして検出される問題があり、Performanceのスコアが100にならないこともある。
-AMPの[issue](https://github.com/ampproject/amphtml/issues/28638)にも同様の事象が報告されているが、閉じられている。
-何だか気持ち悪いが、感覚的には満足の行く速度が出ているので問題ないかな……。
-記事を増やすといずれPerformanceスコアが落ちるはずなので、ページネーションにはなる早で対応しておきたいところ。
+このサイトはAMP Validな実装になっているが、当のAMP scriptがUnused Javascriptとして検出されてしまう問題があり、Performanceのスコアが100にならないこともある。
+AMPの[issue](https://github.com/ampproject/amphtml/issues/28638)にも同様の事象が報告されている。
+対策する術は無いようなので仕方がないが、感覚的には満足の行く速度が出ているので良しとする。
+記事を増やすといずれPerformanceスコアが落ちるはずなので、ページネーションには近いうちに対応したい。
 
 なお、SEOがいくらか減点されているのは「Links do not have descriptive text」という怒られが発生しているため。
 「説明がなく遷移先を予測できないリンクは良くない」ということだが、このサイトでいうと"続きを読む"のリンクがそれに引っかかる。
