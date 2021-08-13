@@ -4,6 +4,7 @@ import { getAllEntrySummaries } from "utils/entryUtil";
 import React from "react";
 import { AppHead } from "components/AppHead";
 import { EntrySummary } from "components/EntrySummary";
+import { publishRssXml } from "utils/feed";
 
 type Props = {
   entries: IEntrySummary[];
@@ -25,6 +26,7 @@ export default Home;
 
 export const getStaticProps: GetStaticProps = async () => {
   const entries = await getAllEntrySummaries();
+  publishRssXml(entries);
 
   return { props: { entries } };
 };

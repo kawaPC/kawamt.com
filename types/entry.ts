@@ -16,6 +16,8 @@ export type IEntrySummary = {
   formatDate: string;
   title?: string;
   tags?: string[];
+  description: string;
   introductionSource: string;
+  contentSource: string;
   isShort: boolean;
 };

@@ -6,6 +6,7 @@ import { AppHead } from "components/AppHead";
 import { EntrySummary } from "components/EntrySummary";
 import Link from "next/link";
 import { APP_ROOT } from "types/constants";
+import { publishRssXml } from "utils/feed";
 
 type Props = {
   tag: string;
@@ -41,6 +42,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   const tag = params?.tag as string;
   const entries = await getTaggedEntrySummaries(tag);
   const tagsEntryPath = `/tags/${tag}/entry`;
+  publishRssXml(entries, tagsEntryPath);
 
   return { props: { tag, tagsEntryPath, entries } };
 };

@@ -66,12 +66,41 @@ export const getEntry = async (slug: string): Promise<IEntry> => {
   return JSON.parse(JSON.stringify(entry));
 };
 
+export const getAllEntry = async (): Promise<IEntry[]> => {
+  const filePaths = getEntryFilePaths();
+
+  const entriesPromise = filePaths.map((filePath) => getEntry(filePath));
+
+  const entries = await Promise.all(entriesPromise);
+
+  return entries.sort((entry1, entry2) =>
+    Date.parse(entry1.date) > Date.parse(entry2.date) ? -1 : 1
+  );
+};
+
+export const getTaggedEntry = async (tag: string): Promise<IEntry[]> => {
+  const filePaths = getEntryFilePaths();
+
+  const entriesPromise = filePaths.map((filePath) => getEntry(filePath));
+
+  const entries = await Promise.all(entriesPromise);
+
+  return entries
+    .filter((entry) => entry.tags?.includes(tag))
+    .sort((entry1, entry2) =>
+      Date.parse(entry1.date) > Date.parse(entry2.date) ? -1 : 1
+    );
+};
+
 const getEntrySummary = async (filePath: string): Promise<IEntrySummary> => {
   const slug = filePath.replace(/\.md?$/, "");
   const { data, content } = loadEntry(slug);
 
   const [introduction, body] = content.split("***");
   const introductionSource = await markdownToHtml(introduction);
+  const contentSource = await markdownToHtml(content);
+  const plainText = removeMarkdown(introduction, { useImgAltText: false });
+  const description = plainText.replace(/\n/g, "").substr(0, 120);
 
   const date = data.date || getDate(slug);
 
@@ -80,8 +109,10 @@ const getEntrySummary = async (filePath: string): Promise<IEntrySummary> => {
     date,
     formatDate: formatSlashYYYYMMDD(date),
     introductionSource: introductionSource,
+    contentSource: contentSource,
     isShort: !body,
     title: data.title,
+    description: description,
     tags: data.tags,
   };
 
