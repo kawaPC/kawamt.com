@@ -1,3 +1,3 @@
 # kawamt.com
 
-[kawamt.com](https://www.kawamt.com/)
+[kawamt.com](https://kawamt.com/)
