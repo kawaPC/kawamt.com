@@ -119,7 +119,7 @@ const getEntrySummary = async (filePath: string): Promise<IEntrySummary> => {
   return JSON.parse(JSON.stringify(entry));
 };
 
-export const getAllEntrySummaries = async (): Promise<IEntrySummary[]> => {
+export const getEntrySummaries = async (): Promise<IEntrySummary[]> => {
   const filePaths = getEntryFilePaths();
 
   const entriesPromise = filePaths.map((filePath) => getEntrySummary(filePath));

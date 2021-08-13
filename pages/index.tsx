@@ -1,6 +1,6 @@
 import { GetStaticProps } from "next";
 import { IEntrySummary } from "types/entry";
-import { getAllEntrySummaries } from "utils/entryUtil";
+import { getEntrySummaries } from "utils/entryUtil";
 import React from "react";
 import { AppHead } from "components/AppHead";
 import { EntrySummary } from "components/EntrySummary";
@@ -25,7 +25,7 @@ const Home: React.FC<Props> = ({ entries }) => {
 export default Home;
 
 export const getStaticProps: GetStaticProps = async () => {
-  const entries = await getAllEntrySummaries();
+  const entries = await getEntrySummaries();
   publishRssXml(entries);
 
   return { props: { entries } };
