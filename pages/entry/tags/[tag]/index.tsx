@@ -20,6 +20,7 @@ const IndexTaggedEntry: React.FC<Props> = ({ tag, path, entries, isLast }) => {
     <section className="space-y-16 mt-10">
       <AppHead
         path={path}
+        rssPath={path}
         title={`記事一覧 [${tag}]`}
         description={`記事一覧 [${tag}]`}
       />

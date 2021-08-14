@@ -5,10 +5,17 @@ type Props = {
   title?: string;
   description?: string;
   path?: string;
+  rssPath?: string;
   ogImage?: string;
 };
 
-const AppHead: React.FC<Props> = ({ title, description, path, ogImage }) => {
+const AppHead: React.FC<Props> = ({
+  title,
+  description,
+  path,
+  ogImage,
+  rssPath,
+}) => {
   const url = path ? `${APP_ROOT}${path}` : "";
 
   return (
@@ -19,7 +26,7 @@ const AppHead: React.FC<Props> = ({ title, description, path, ogImage }) => {
       <link
         rel="alternate"
         type="application/rss+xml"
-        href={path ? `${path}/rss.xml` : "/rss.xml"}
+        href={rssPath ? `${rssPath}/rss.xml` : "/rss.xml"}
       />
       <meta property="og:site_name" content={SITE_NAME} />
       <meta property="og:title" content={title ?? SITE_NAME} />
