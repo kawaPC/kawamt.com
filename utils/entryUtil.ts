@@ -86,7 +86,7 @@ export const getEntries = async (
 
   const end = COUNT_PER_PAGE * page;
   const start = end - COUNT_PER_PAGE;
-  const total = allEntries.length;
+  const total = filteredEntries.length;
   const isLast = total <= end;
 
   const entries = filteredEntries

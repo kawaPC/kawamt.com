@@ -34,7 +34,7 @@ const IndexTaggedEntry: React.FC<Props> = ({ tag, path, entries, isLast }) => {
         <EntrySummary key={entry.slug} {...entry} />
       ))}
 
-      <Pagination page={1} isLast={isLast} />
+      <Pagination page={1} tag={tag} isLast={isLast} />
     </section>
   );
 };

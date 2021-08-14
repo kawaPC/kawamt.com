@@ -33,7 +33,7 @@ const IndexTaggedEntryPerPage: React.FC<Props> = ({
         <EntrySummary key={entry.slug} {...entry} />
       ))}
 
-      <Pagination page={page} isLast={isLast} />
+      <Pagination page={page} tag={tag} isLast={isLast} />
     </section>
   );
 };
