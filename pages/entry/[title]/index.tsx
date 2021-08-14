@@ -27,7 +27,7 @@ const Entry: React.FC<IEntry> = ({
         ogImage={ogImage}
       />
 
-      <EntryDate date={date} href={`/entry/${slug}`}>
+      <EntryDate date={date} href={path}>
         {formatDate}
       </EntryDate>
       {title && <h1 className="text-2xl">{title}</h1>}
