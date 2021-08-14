@@ -4,7 +4,6 @@ import { getEntries, getTaggedEntryPerPagePaths } from "utils/entryUtil";
 import React from "react";
 import { AppHead } from "components/AppHead";
 import { EntrySummary } from "components/EntrySummary";
-import { publishRssXml } from "utils/feed";
 import { Pagination } from "components/Pagination";
 
 type Props = {
@@ -38,8 +37,6 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   const page = parseInt(params?.page as string, 10);
 
   const { entries, isLast } = await getEntries(page, tag);
-
-  publishRssXml(entries);
 
   return { props: { entries, page, isLast } };
 };
