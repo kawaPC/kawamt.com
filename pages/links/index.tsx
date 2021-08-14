@@ -1,14 +1,9 @@
 import { AppHead } from "components/AppHead";
-import { APP_ROOT } from "types/constants";
 
 const LinksPage: React.FC = () => {
   return (
     <section className="mt-10">
-      <AppHead
-        url={`${APP_ROOT}/links`}
-        title="リンク一覧"
-        description="リンク一覧"
-      />
+      <AppHead path="/links" title="リンク一覧" description="リンク一覧" />
       <h1 className="text-2xl font-bold">リンク一覧</h1>
       <div className="mt-4 space-y-4">
         <div>

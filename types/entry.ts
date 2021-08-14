@@ -1,6 +1,5 @@
 export type IEntry = {
   slug: string;
-  entryUrl: string;
   date: string;
   description: string;
   ogImage?: string;

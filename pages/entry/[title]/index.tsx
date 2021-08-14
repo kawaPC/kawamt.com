@@ -8,7 +8,6 @@ import { EntryTags } from "components/EntryTags";
 
 const Entry: React.FC<IEntry> = ({
   slug,
-  entryUrl,
   title,
   tags,
   ogImage,
@@ -17,10 +16,12 @@ const Entry: React.FC<IEntry> = ({
   formatDate,
   contentSource,
 }) => {
+  const path = `/entry/${slug}`;
+
   return (
     <article className="mt-10">
       <AppHead
-        url={entryUrl}
+        path={path}
         title={title || slug}
         description={description}
         ogImage={ogImage}

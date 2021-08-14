@@ -4,11 +4,13 @@ import { APP_ROOT, SITE_DESCRIPTION, SITE_NAME } from "types/constants";
 type Props = {
   title?: string;
   description?: string;
-  url?: string;
+  path?: string;
   ogImage?: string;
 };
 
-const AppHead: React.FC<Props> = ({ title, description, url, ogImage }) => {
+const AppHead: React.FC<Props> = ({ title, description, path, ogImage }) => {
+  const url = path ? `${APP_ROOT}${path}` : "";
+
   return (
     <Head>
       <title>{title || SITE_NAME}</title>

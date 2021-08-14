@@ -55,11 +55,8 @@ export const getEntry = async (slug: string): Promise<IEntry> => {
   const introductionSource = await markdownToHtml(introduction);
   const contentSource = await markdownToHtml(content);
 
-  const entryUrl = `${APP_ROOT}/entry/${slug}`;
-
   const entry = {
     slug,
-    entryUrl,
     date,
     description,
     ogImage,

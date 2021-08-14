@@ -5,33 +5,27 @@ import React from "react";
 import { AppHead } from "components/AppHead";
 import { EntrySummary } from "components/EntrySummary";
 import Link from "next/link";
-import { APP_ROOT } from "types/constants";
 import { publishRssXml } from "utils/feed";
 import { Pagination } from "components/Pagination";
 
 type Props = {
   tag: string;
-  tagsEntryPath: string;
+  path: string;
   entries: IEntry[];
   isLast: boolean;
 };
 
-const IndexTaggedEntry: React.FC<Props> = ({
-  tag,
-  tagsEntryPath,
-  entries,
-  isLast,
-}) => {
+const IndexTaggedEntry: React.FC<Props> = ({ tag, path, entries, isLast }) => {
   return (
     <section className="space-y-16 mt-10">
       <AppHead
-        url={`${APP_ROOT}${tagsEntryPath}`}
+        path={path}
         title={`記事一覧 [${tag}]`}
         description={`記事一覧 [${tag}]`}
       />
 
       <h1 className="text-center text-gray-600">
-        <Link href={tagsEntryPath}>
+        <Link href={path}>
           <a className="text-3xl">{`#${tag}`}</a>
         </Link>
       </h1>
@@ -50,10 +44,10 @@ export default IndexTaggedEntry;
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const tag = params?.tag as string;
   const { entries, isLast } = await getEntries(1, tag);
-  const tagsEntryPath = `/tags/${tag}/entry`;
-  publishRssXml(entries, tagsEntryPath);
+  const path = `/tags/${tag}/entry`;
+  publishRssXml(entries, path);
 
-  return { props: { tag, tagsEntryPath, entries, isLast } };
+  return { props: { tag, path, entries, isLast } };
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {

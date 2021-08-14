@@ -1,14 +1,9 @@
 import { AppHead } from "components/AppHead";
-import { APP_ROOT } from "types/constants";
 
 const AboutPage: React.FC = () => {
   return (
     <section className="mt-10">
-      <AppHead
-        url={`${APP_ROOT}/about`}
-        title={"about"}
-        description={"私について"}
-      />
+      <AppHead path="/about" title={"about"} description={"私について"} />
       <h1 className="text-2xl font-bold">About</h1>
       <p className="mt-2">
         かつては、バイクで神社をめぐったり、風景写真を撮ってまわったりする日々を送っていました。

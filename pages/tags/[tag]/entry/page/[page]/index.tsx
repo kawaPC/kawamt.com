@@ -8,18 +8,26 @@ import { Pagination } from "components/Pagination";
 
 type Props = {
   entries: IEntry[];
+  tag: string;
   page: number;
   isLast: boolean;
 };
 
 const IndexTaggedEntryPerPage: React.FC<Props> = ({
   entries,
+  tag,
   page,
   isLast,
 }) => {
+  const path = `/entry/tags/${tag}/page/${page}`;
+
   return (
     <section className="space-y-16 mt-10">
-      <AppHead />
+      <AppHead
+        path={path}
+        title={`${page}ページ目の記事一覧 [${tag}]`}
+        description={`${page}ページ目の記事一覧 [${tag}]`}
+      />
 
       {entries.map((entry) => (
         <EntrySummary key={entry.slug} {...entry} />

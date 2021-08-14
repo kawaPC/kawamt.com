@@ -13,9 +13,15 @@ type Props = {
 };
 
 const IndexEntryPerPage: React.FC<Props> = ({ entries, page, isLast }) => {
+  const path = `/entry/page/${page}`;
+
   return (
     <section className="space-y-16 mt-10">
-      <AppHead />
+      <AppHead
+        path={path}
+        title={`${page}ページ目の記事一覧`}
+        description={`${page}ページ目の記事一覧`}
+      />
 
       {entries.map((entry) => (
         <EntrySummary key={entry.slug} {...entry} />
