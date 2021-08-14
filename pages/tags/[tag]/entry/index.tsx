@@ -1,20 +1,27 @@
 import { GetStaticPaths, GetStaticProps } from "next";
-import { IEntrySummary } from "types/entry";
-import { getAllEntryTags, getTaggedEntrySummaries } from "utils/entryUtil";
+import { IEntry } from "types/entry";
+import { getTaggedEntryPaths, getEntries } from "utils/entryUtil";
 import React from "react";
 import { AppHead } from "components/AppHead";
 import { EntrySummary } from "components/EntrySummary";
 import Link from "next/link";
 import { APP_ROOT } from "types/constants";
 import { publishRssXml } from "utils/feed";
+import { Pagination } from "components/Pagination";
 
 type Props = {
   tag: string;
   tagsEntryPath: string;
-  entries: IEntrySummary[];
+  entries: IEntry[];
+  isLast: boolean;
 };
 
-const TagsEntryPage: React.FC<Props> = ({ tag, tagsEntryPath, entries }) => {
+const IndexTaggedEntry: React.FC<Props> = ({
+  tag,
+  tagsEntryPath,
+  entries,
+  isLast,
+}) => {
   return (
     <section className="space-y-16 mt-10">
       <AppHead
@@ -32,32 +39,26 @@ const TagsEntryPage: React.FC<Props> = ({ tag, tagsEntryPath, entries }) => {
       {entries.map((entry) => (
         <EntrySummary key={entry.slug} {...entry} />
       ))}
+
+      <Pagination page={1} isLast={isLast} />
     </section>
   );
 };
 
-export default TagsEntryPage;
+export default IndexTaggedEntry;
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const tag = params?.tag as string;
-  const entries = await getTaggedEntrySummaries(tag);
+  const { entries, isLast } = await getEntries(1, tag);
   const tagsEntryPath = `/tags/${tag}/entry`;
   publishRssXml(entries, tagsEntryPath);
 
-  return { props: { tag, tagsEntryPath, entries } };
+  return { props: { tag, tagsEntryPath, entries, isLast } };
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const tags = getAllEntryTags();
-
-  const paths = tags.map((tag) => ({
-    params: {
-      tag: tag,
-    },
-  }));
-
   return {
-    paths,
+    paths: getTaggedEntryPaths(),
     fallback: false,
   };
 };

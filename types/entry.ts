@@ -7,16 +7,6 @@ export type IEntry = {
   formatDate: string;
   title?: string;
   tags?: string[];
-  contentSource: string;
-};
-
-export type IEntrySummary = {
-  slug: string;
-  date: string;
-  formatDate: string;
-  title?: string;
-  tags?: string[];
-  description: string;
   introductionSource: string;
   contentSource: string;
   isShort: boolean;

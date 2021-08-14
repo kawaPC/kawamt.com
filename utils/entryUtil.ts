@@ -2,11 +2,12 @@ import { join } from "path";
 import fs from "fs";
 import matter from "gray-matter";
 import { formatSlashYYYYMMDD } from "./dayjsUtil";
-import { IEntry, IEntrySummary } from "types/entry";
+import { IEntry } from "types/entry";
 import { markdownToHtml } from "./transpiler";
 import removeMarkdown from "remove-markdown";
-import { APP_ROOT } from "types/constants";
+import { APP_ROOT, COUNT_PER_PAGE } from "types/constants";
 import "utils/arrayExtensions";
+import { range } from "utils/arrayExtensions";
 
 const ENTRIES_PATH = join(process.cwd(), "entry/");
 
@@ -26,8 +27,11 @@ function loadEntry(slug: string): Entry {
   return matter(fileContents);
 }
 
-function getEntryFilePaths(): string[] {
-  return fs.readdirSync(ENTRIES_PATH).filter((path) => /\.md?$/.test(path));
+function getEntrySlugs(): string[] {
+  return fs
+    .readdirSync(ENTRIES_PATH)
+    .filter((path) => /\.md?$/.test(path))
+    .map((filePath) => filePath.replace(/\.md?$/, ""));
 }
 
 function getDate(slug?: string): string {
@@ -47,6 +51,8 @@ export const getEntry = async (slug: string): Promise<IEntry> => {
   const ogImageRegex = content.match(/http.*(png|jpg)/);
   const ogImage = ogImageRegex ? ogImageRegex[0] : undefined;
 
+  const [introduction, body] = content.split("***");
+  const introductionSource = await markdownToHtml(introduction);
   const contentSource = await markdownToHtml(content);
 
   const entryUrl = `${APP_ROOT}/entry/${slug}`;
@@ -57,131 +63,126 @@ export const getEntry = async (slug: string): Promise<IEntry> => {
     date,
     description,
     ogImage,
-    formatDate: formatSlashYYYYMMDD(date),
-    contentSource: contentSource,
     title: data.title,
     tags: data.tags,
-  };
-
-  return JSON.parse(JSON.stringify(entry));
-};
-
-export const getAllEntry = async (): Promise<IEntry[]> => {
-  const filePaths = getEntryFilePaths();
-
-  const entriesPromise = filePaths.map((filePath) => getEntry(filePath));
-
-  const entries = await Promise.all(entriesPromise);
-
-  return entries.sort((entry1, entry2) =>
-    Date.parse(entry1.date) > Date.parse(entry2.date) ? -1 : 1
-  );
-};
-
-export const getTaggedEntry = async (tag: string): Promise<IEntry[]> => {
-  const filePaths = getEntryFilePaths();
-
-  const entriesPromise = filePaths.map((filePath) => getEntry(filePath));
-
-  const entries = await Promise.all(entriesPromise);
-
-  return entries
-    .filter((entry) => entry.tags?.includes(tag))
-    .sort((entry1, entry2) =>
-      Date.parse(entry1.date) > Date.parse(entry2.date) ? -1 : 1
-    );
-};
-
-const getEntrySummary = async (filePath: string): Promise<IEntrySummary> => {
-  const slug = filePath.replace(/\.md?$/, "");
-  const { data, content } = loadEntry(slug);
-
-  const [introduction, body] = content.split("***");
-  const introductionSource = await markdownToHtml(introduction);
-  const contentSource = await markdownToHtml(content);
-  const plainText = removeMarkdown(introduction, { useImgAltText: false });
-  const description = plainText.replace(/\n/g, "").substr(0, 120);
-
-  const date = data.date || getDate(slug);
-
-  const entry = {
-    slug,
-    date,
     formatDate: formatSlashYYYYMMDD(date),
+    isShort: !body,
     introductionSource: introductionSource,
     contentSource: contentSource,
-    isShort: !body,
-    title: data.title,
-    description: description,
-    tags: data.tags,
   };
 
   return JSON.parse(JSON.stringify(entry));
 };
 
-export const getAllEntrySummaries = async (): Promise<IEntrySummary[]> => {
-  const filePaths = getEntryFilePaths();
+export const getEntries = async (
+  page: number,
+  tag?: string
+): Promise<{ entries: IEntry[]; isLast: boolean }> => {
+  const slugs = getEntrySlugs();
 
-  const entriesPromise = filePaths.map((filePath) => getEntrySummary(filePath));
+  const entriesPromise = slugs.map((slug) => getEntry(slug));
 
-  const entries = await Promise.all(entriesPromise);
+  const allEntries = await Promise.all(entriesPromise);
+  const filteredEntries = tag
+    ? allEntries.filter((entry) => entry.tags?.includes(tag))
+    : allEntries;
 
-  return entries.sort((entry1, entry2) =>
-    Date.parse(entry1.date) > Date.parse(entry2.date) ? -1 : 1
-  );
-};
+  const end = COUNT_PER_PAGE * page;
+  const start = end - COUNT_PER_PAGE;
+  const total = allEntries.length;
+  const isLast = total <= end;
 
-export const getTaggedEntrySummaries = async (
-  tag: string
-): Promise<IEntrySummary[]> => {
-  const filePaths = getEntryFilePaths();
-
-  const entriesPromise = filePaths.map((filePath) => getEntrySummary(filePath));
-
-  const entries = await Promise.all(entriesPromise);
-
-  return entries
-    .filter((entry) => entry.tags?.includes(tag))
+  const entries = filteredEntries
     .sort((entry1, entry2) =>
       Date.parse(entry1.date) > Date.parse(entry2.date) ? -1 : 1
-    );
+    )
+    .slice(start, end);
+
+  return { entries, isLast };
 };
 
-function getEntrySlugAndDate(filePath: string) {
-  const slug = filePath.replace(/\.md?$/, "");
-
-  const { data } = loadEntry(slug);
-
-  const date = data.date || getDate(slug);
-
-  return { slug, date };
-}
-
-function getEntryTags(filePath: string) {
-  const slug = filePath.replace(/\.md?$/, "");
-
-  const { data } = loadEntry(slug);
-
-  return { tags: data.tags || [] };
-}
-
 export function getAllEntrySlugs(): string[] {
-  const filePaths = getEntryFilePaths();
-  const slugs = filePaths
-    .map((filePath) => getEntrySlugAndDate(filePath))
+  const slugs = getEntrySlugs();
+
+  const slugAndDate = slugs.map((slug) => {
+    const { data } = loadEntry(slug);
+    const date = data.date || getDate(slug);
+    return { date, slug };
+  });
+
+  return slugAndDate
     .sort((entry1, entry2) =>
       Date.parse(entry1.date) > Date.parse(entry2.date) ? -1 : 1
     )
     .map((entry) => entry.slug);
-  return slugs;
 }
 
-export function getAllEntryTags(): string[] {
-  const filePaths = getEntryFilePaths();
-  const tags = filePaths
-    .map((filePath) => getEntryTags(filePath))
+function getEntryTags(): { slug: string; tags: string[] }[] {
+  const slugs = getEntrySlugs();
+
+  return slugs.map((slug) => {
+    const { data } = loadEntry(slug);
+
+    return { slug: slug, tags: data.tags || [] };
+  });
+}
+
+type EntryPerPagePath = {
+  params: {
+    page: string;
+  };
+};
+
+export function getEntryPerPagePaths(): EntryPerPagePath[] {
+  const slugs = getEntrySlugs();
+  const pageCount = Math.ceil(slugs.length / COUNT_PER_PAGE);
+
+  return range(1, pageCount).map((page) => ({
+    params: {
+      page: String(page),
+    },
+  }));
+}
+
+type TaggedEntryPath = {
+  params: {
+    tag: string;
+  };
+};
+
+export function getTaggedEntryPaths(): TaggedEntryPath[] {
+  const tags = getEntryTags()
     .flatMap((entry) => entry.tags)
     .uniq();
 
-  return tags;
+  return tags.map((tag) => ({
+    params: {
+      tag: tag,
+    },
+  }));
+}
+
+type TaggedEntryPerPagePath = {
+  params: {
+    tag: string;
+    page: string;
+  };
+};
+
+export function getTaggedEntryPerPagePaths(): TaggedEntryPerPagePath[] {
+  const entries = getEntryTags();
+  const tags = entries.flatMap((entry) => entry.tags).uniq();
+
+  return tags.flatMap((tag) => {
+    const total = entries.filter((entry) => entry.tags.includes(tag)).length;
+
+    const pageCount = Math.ceil(total / COUNT_PER_PAGE);
+
+    return range(1, pageCount).map((page) => ({
+      params: {
+        tag: tag,
+        page: String(page),
+      },
+    }));
+  });
 }

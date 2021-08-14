@@ -6,7 +6,7 @@ import { RehypeToReactElement } from "components/RehypeToReactElement";
 import { AppHead } from "components/AppHead";
 import { EntryTags } from "components/EntryTags";
 
-const EntryPage: React.FC<IEntry> = ({
+const Entry: React.FC<IEntry> = ({
   slug,
   entryUrl,
   title,
@@ -37,7 +37,7 @@ const EntryPage: React.FC<IEntry> = ({
   );
 };
 
-export default EntryPage;
+export default Entry;
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const entry = await getEntry(params?.title as string);

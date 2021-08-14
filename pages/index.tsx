@@ -1,16 +1,18 @@
 import { GetStaticProps } from "next";
-import { IEntrySummary } from "types/entry";
-import { getAllEntrySummaries } from "utils/entryUtil";
+import { IEntry } from "types/entry";
+import { getEntries } from "utils/entryUtil";
 import React from "react";
 import { AppHead } from "components/AppHead";
 import { EntrySummary } from "components/EntrySummary";
 import { publishRssXml } from "utils/feed";
+import { Pagination } from "components/Pagination";
 
 type Props = {
-  entries: IEntrySummary[];
+  entries: IEntry[];
+  isLast: boolean;
 };
 
-const Home: React.FC<Props> = ({ entries }) => {
+const Home: React.FC<Props> = ({ entries, isLast }) => {
   return (
     <section className="space-y-16 mt-10">
       <AppHead />
@@ -18,6 +20,8 @@ const Home: React.FC<Props> = ({ entries }) => {
       {entries.map((entry) => (
         <EntrySummary key={entry.slug} {...entry} />
       ))}
+
+      <Pagination page={1} isLast={isLast} />
     </section>
   );
 };
@@ -25,10 +29,10 @@ const Home: React.FC<Props> = ({ entries }) => {
 export default Home;
 
 export const getStaticProps: GetStaticProps = async () => {
-  const entries = await getAllEntrySummaries();
+  const { entries, isLast } = await getEntries(1);
   publishRssXml(entries);
 
-  return { props: { entries } };
+  return { props: { entries, isLast } };
 };
 
 export const config = { amp: true };
