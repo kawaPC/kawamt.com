@@ -8,7 +8,7 @@ const EntryTags: React.VFC<Props> = ({ tags }) => {
   return (
     <div className="font-mono text-gray-500 space-x-2">
       {tags.map((tag) => (
-        <Link key={tag} href={`/tags/${tag}/entry`}>
+        <Link key={tag} href={`/entry/tags/${tag}`}>
           {`#${tag}`}
         </Link>
       ))}

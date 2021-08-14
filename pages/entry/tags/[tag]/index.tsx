@@ -44,7 +44,7 @@ export default IndexTaggedEntry;
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const tag = params?.tag as string;
   const { entries, isLast } = await getEntries(1, tag);
-  const path = `/tags/${tag}/entry`;
+  const path = `/entry/tags/${tag}`;
   publishRssXml(entries, path);
 
   return { props: { tag, path, entries, isLast } };
