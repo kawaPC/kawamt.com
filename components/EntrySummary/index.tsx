@@ -3,9 +3,9 @@ import { EntryTags } from "components/EntryTags";
 import { ReadMore } from "components/ReadMore";
 import { RehypeToReactElement } from "components/RehypeToReactElement";
 import { Title } from "components/Typography/Title";
-import { IEntrySummary } from "types/entry";
+import { IEntry } from "types/entry";
 
-const EntrySummary: React.VFC<IEntrySummary> = ({
+const EntrySummary: React.VFC<IEntry> = ({
   slug,
   date,
   formatDate,
