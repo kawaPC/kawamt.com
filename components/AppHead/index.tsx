@@ -16,6 +16,11 @@ const AppHead: React.FC<Props> = ({ title, description, path, ogImage }) => {
       <title>{title || SITE_NAME}</title>
       <meta name="description" content={description || SITE_DESCRIPTION} />
       <link rel="canonical" href={url || APP_ROOT} />
+      <link
+        rel="alternate"
+        type="application/rss+xml"
+        href={path ? `${path}/rss.xml` : "/rss.xml"}
+      />
       <meta property="og:site_name" content={SITE_NAME} />
       <meta property="og:title" content={title ?? SITE_NAME} />
       <meta
