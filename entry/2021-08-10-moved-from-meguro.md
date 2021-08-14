@@ -1,6 +1,6 @@
 ---
 title: 引っ越しをした
-tags: ['dialy']
+tags: ['diary']
 ---
 
 ![引っ越し前日](https://cdn-ak.f.st-hatena.com/images/fotolife/h/hachipochi/20210812/20210812102235.jpg)
