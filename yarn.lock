@@ -4802,9 +4802,10 @@ rehype-parse@^7.0.1:
     hast-util-from-parse5 "^6.0.0"
     parse5 "^6.0.0"
 
-rehype-probe-image-size@kawaPC/rehype-probe-image-size.git:
+rehype-probe-image-size@^1.0.0:
   version "1.0.0"
-  resolved "https://codeload.github.com/kawaPC/rehype-probe-image-size/tar.gz/c5b7a865a0647dbe91ccf8ca09243b4e955c0703"
+  resolved "https://registry.yarnpkg.com/rehype-probe-image-size/-/rehype-probe-image-size-1.0.0.tgz#62e8ca725d93a8d4198a8e4b7692661f4e95dfb1"
+  integrity sha512-eSR4kLG2qaDWNqZ13IvMsW0XfCgTyFxkqZXgRfa0T/3yW2DJ6VEo18CW5pRBOsxMSTAt/SIlyQ9N64PV3lbgqg==
   dependencies:
     probe-image-size "^7.2.1"
     unified "^9.0.0"

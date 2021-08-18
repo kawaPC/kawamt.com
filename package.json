@@ -36,7 +36,7 @@
     "probe-image-size": "^7.2.1",
     "raw-loader": "^4.0.2",
     "rehype-parse": "^7.0.1",
-    "rehype-probe-image-size": "kawaPC/rehype-probe-image-size.git",
+    "rehype-probe-image-size": "^1.0.0",
     "rehype-react": "^6.2.1",
     "rehype-stringify": "^8.0.0",
     "remark-breaks": "^2.0.2",
