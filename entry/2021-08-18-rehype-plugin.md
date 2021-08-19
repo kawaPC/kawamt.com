@@ -1,5 +1,5 @@
 ---
-title: 初めてのnpmパッケージ
+title: 初めてのnpmパッケージ公開
 tags: ['programming']
 ---
 
