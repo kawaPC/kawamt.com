@@ -40,6 +40,12 @@ class MyDocument extends Document {
             type="image/png"
             href="/android-chrome-192x192.png"
           />
+          <link
+            rel="search"
+            type="application/opensearchdescription+xml"
+            title="kawamt.com"
+            href="/opensearch.xml"
+          ></link>
         </Head>
         <body>
           <Main />
