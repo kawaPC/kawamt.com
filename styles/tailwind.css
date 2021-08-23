@@ -13,13 +13,13 @@
 /*! purgecss start ignore */
 
 body {
-  font-feature-settings: "pwid";
+  font-feature-settings: "pkna";
+  letter-spacing: 0.075em;
 
   @apply font-sans
     text-sm
     leading-7
     text-gray-700
-    tracking-wider
     break-words;
 }
 
