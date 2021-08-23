@@ -45,7 +45,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 
   const { entries, isLast } = await getEntries(page, tag);
 
-  return { props: { entries, page, isLast } };
+  return { props: { entries, page, tag, isLast } };
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
