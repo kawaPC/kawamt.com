@@ -30,6 +30,7 @@ const CustomImage: React.VFC<Props> = ({ src, alt, title, width, height }) => {
       style={calcMaxWidthStyle(width, height)}
     >
       <amp-img
+        className="picture"
         src={src}
         alt={alt}
         title={title}
