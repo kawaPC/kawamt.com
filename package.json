@@ -3,10 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "yarn build-css-dev && next dev",
+    "dev": "yarn build-css && next dev",
     "build": "yarn build-css && next build && next-sitemap",
-    "build-css": "CSS_ENV=production postcss styles/tailwind.css --config postcss.config.js -o styles/output.css",
-    "build-css-dev": "CSS_ENV=development postcss styles/tailwind.css --config postcss.config.js -o styles/output.css",
+    "build-css": "postcss styles/tailwind.css --config postcss.config.js -o styles/output.css",
     "start": "next start",
     "lint": "next lint"
   },

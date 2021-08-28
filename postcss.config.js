@@ -7,17 +7,14 @@ const purgecssOption = {
   defaultExtractor: (content) => content.match(/[\w-/:]+(?<!:)/g) || [],
 };
 
-const plugins =
-  process.env.CSS_ENV === "production"
-    ? [
-        require("tailwindcss"),
-        require("autoprefixer"),
-        require("@fullhuman/postcss-purgecss")(purgecssOption),
-        require("cssnano")({
-          preset: "default",
-        }),
-      ]
-    : [require("tailwindcss"), require("autoprefixer")];
+const plugins = [
+  require("tailwindcss"),
+  require("autoprefixer"),
+  require("@fullhuman/postcss-purgecss")(purgecssOption),
+  require("cssnano")({
+    preset: "default",
+  }),
+];
 
 module.exports = {
   plugins: plugins,
