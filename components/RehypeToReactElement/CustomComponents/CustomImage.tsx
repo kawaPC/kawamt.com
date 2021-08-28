@@ -1,60 +1,45 @@
-import { useAmp } from "next/amp";
-import Image from "next/image";
+import { MAX_IMAGE_HEIGHT } from "types/constants";
+import { imageRatio } from "utils/math";
+
+function calcMaxWidthStyle(width: string, height: string) {
+  const nWidth = Number(width);
+  const nHeight = Number(height);
+
+  return nHeight < MAX_IMAGE_HEIGHT
+    ? undefined
+    : {
+        maxWidth: imageRatio(nWidth, nHeight, MAX_IMAGE_HEIGHT, "height").width,
+      };
+}
 
 type Props = {
   src: string;
   alt?: string;
   title?: string;
-  width?: string;
-  height?: string;
+  width: string;
+  height: string;
 };
 
 const CustomImage: React.VFC<Props> = ({ src, alt, title, width, height }) => {
-  const isAmp = useAmp();
   return (
-    <div className="flex flex-col mt-5 pb-5 img">
-      {isAmp ? (
-        <figure
-          className={
-            width && height
-              ? "flex flex-col justify-center max-h-96 w-full"
-              : "ampImgFixedContainer"
-          }
-        >
-          <amp-img
-            className="contain"
-            src={src}
-            layout={width && height ? "intrinsic" : "fill"}
-            alt={alt}
-            title={title}
-            width={width}
-            height={height}
-          />
-          {title && (
-            <figcaption className="text-center text-xs text-gray-600 mt-2">
-              {title}
-            </figcaption>
-          )}
-        </figure>
-      ) : (
-        <figure className="flex flex-col justify-center max-h-96">
-          <Image
-            src={src}
-            alt={alt}
-            title={title}
-            width={width || 500}
-            height={height || 384}
-            loading="lazy"
-            objectFit={"contain"}
-          />
-          {title && (
-            <figcaption className="text-center text-xs text-gray-600 mt-2">
-              {title}
-            </figcaption>
-          )}
-        </figure>
+    <figure
+      className="mx-auto mt-5 pb-5"
+      style={calcMaxWidthStyle(width, height)}
+    >
+      <amp-img
+        src={src}
+        alt={alt}
+        title={title}
+        width={width}
+        height={height}
+        layout="responsive"
+      />
+      {title && (
+        <figcaption className="text-center text-xs text-gray-600 mt-2">
+          {title}
+        </figcaption>
       )}
-    </div>
+    </figure>
   );
 };
 
