@@ -5,11 +5,14 @@ function calcMaxWidthStyle(width: string, height: string) {
   const nWidth = Number(width);
   const nHeight = Number(height);
 
-  return nHeight < MAX_IMAGE_HEIGHT
-    ? undefined
-    : {
-        maxWidth: imageRatio(nWidth, nHeight, MAX_IMAGE_HEIGHT, "height").width,
-      };
+  const maxWidth =
+    nHeight < MAX_IMAGE_HEIGHT
+      ? width
+      : Math.round(
+          imageRatio(nWidth, nHeight, MAX_IMAGE_HEIGHT, "height").width
+        );
+
+  return { maxWidth };
 }
 
 type Props = {
@@ -32,7 +35,7 @@ const CustomImage: React.VFC<Props> = ({ src, alt, title, width, height }) => {
         title={title}
         width={width}
         height={height}
-        layout="responsive"
+        layout="intrinsic"
       />
       {title && (
         <figcaption className="text-center text-xs text-gray-600 mt-2">
