@@ -2,7 +2,7 @@ import RSS from "rss";
 import fs from "fs";
 import { join } from "path";
 import mkdirp from "mkdirp";
-import { APP_ROOT, SITE_DESCRIPTION, SITE_NAME } from "types/constants";
+import { APP_ROOT, SITE_DESCRIPTION, SITE_NAME } from "utils/constants";
 import { IEntry } from "types/entry";
 
 const PUBLIC_PATH = join(process.cwd(), "public");

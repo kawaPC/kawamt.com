@@ -5,7 +5,7 @@ import { formatSlashYYYYMMDD } from "./dayjsUtil";
 import { IEntry } from "types/entry";
 import { markdownToHtml } from "./transpiler";
 import removeMarkdown from "remove-markdown";
-import { COUNT_PER_PAGE } from "types/constants";
+import { COUNT_PER_PAGE } from "utils/constants";
 import "utils/arrayExtensions";
 import { range } from "utils/arrayExtensions";
 

@@ -1,4 +1,4 @@
-import { MAX_IMAGE_HEIGHT } from "types/constants";
+import { MAX_IMAGE_HEIGHT } from "utils/constants";
 import { imageRatio } from "utils/math";
 
 function calcMaxWidthStyle(width: string, height: string) {
