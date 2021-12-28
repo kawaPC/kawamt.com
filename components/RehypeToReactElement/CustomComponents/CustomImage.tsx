@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { MAX_IMAGE_HEIGHT } from "utils/constants";
 import { imageRatio } from "utils/math";
 
@@ -29,14 +30,13 @@ const CustomImage: React.VFC<Props> = ({ src, alt, title, width, height }) => {
       className="mx-auto mt-5 pb-5"
       style={calcMaxWidthStyle(width, height)}
     >
-      <amp-img
+      <Image
         className="picture"
         src={src}
-        alt={alt}
-        title={title}
         width={width}
         height={height}
-        layout="intrinsic"
+        alt={alt}
+        title={title}
       />
       {title && (
         <figcaption className="text-center text-xs text-gray-600 mt-2">

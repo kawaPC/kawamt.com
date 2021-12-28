@@ -21,5 +21,3 @@ const LinksPage: React.FC = () => {
 };
 
 export default LinksPage;
-
-export const config = { amp: true };
