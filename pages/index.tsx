@@ -34,5 +34,3 @@ export const getStaticProps: GetStaticProps = async () => {
 
   return { props: { entries, isLast } };
 };
-
-export const config = { amp: true };

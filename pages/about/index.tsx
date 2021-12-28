@@ -1,4 +1,5 @@
 import { AppHead } from "components/AppHead";
+import Image from "next/image";
 
 const AboutPage: React.FC = () => {
   return (
@@ -17,9 +18,9 @@ const AboutPage: React.FC = () => {
       <p className="mt-2">広島 → 東京 → 京都 → 東京(現在)</p>
 
       <h2 className="text-xl font-bold mt-5">連絡先</h2>
-      <amp-img
-        src="/mail_address.png"
-        layout="fixed"
+      <Image
+        className="picture"
+        src={"/mail_address.png"}
         alt="メールアドレス"
         title="メールアドレス"
         width="187"
@@ -30,5 +31,3 @@ const AboutPage: React.FC = () => {
 };
 
 export default AboutPage;
-
-export const config = { amp: true };
