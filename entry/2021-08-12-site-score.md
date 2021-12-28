@@ -1,6 +1,6 @@
 ---
 title: このサイトのスコア
-tags: ['programming']
+tags: ['dev']
 ---
 
 ![Lighthouseのスコア](https://cdn-ak.f.st-hatena.com/images/fotolife/h/hachipochi/20210813/20210813022750.png "Lighthouseのスコア")

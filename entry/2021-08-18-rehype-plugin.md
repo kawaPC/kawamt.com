@@ -1,6 +1,6 @@
 ---
 title: 初めてのnpmパッケージ公開
-tags: ['programming']
+tags: ['dev']
 ---
 
 ![公開したnpmパッケージ](https://cdn-ak.f.st-hatena.com/images/fotolife/h/hachipochi/20210829/20210829005143.png)
