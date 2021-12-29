@@ -35,6 +35,8 @@ const CustomImage: React.VFC<Props> = ({ src, alt, title, width, height }) => {
         height={height}
         alt={alt}
         title={title}
+        blurDataURL={src.replace(/(\.\w*)$/, "_120$1")}
+        placeholder={"blur"}
       />
       {title && (
         <figcaption className="text-center text-xs text-gray-600 mt-2">
