@@ -1,6 +1,5 @@
 import Image from "next/image";
 import { MAX_IMAGE_HEIGHT } from "utils/constants";
-import { imageRatio } from "utils/math";
 
 function calcMaxWidthStyle(width: string, height: string) {
   const nWidth = Number(width);
@@ -8,10 +7,8 @@ function calcMaxWidthStyle(width: string, height: string) {
 
   const maxWidth =
     nHeight < MAX_IMAGE_HEIGHT
-      ? width
-      : Math.round(
-          imageRatio(nWidth, nHeight, MAX_IMAGE_HEIGHT, "height").width
-        );
+      ? undefined
+      : Math.round((MAX_IMAGE_HEIGHT * nWidth) / nHeight);
 
   return { maxWidth };
 }
