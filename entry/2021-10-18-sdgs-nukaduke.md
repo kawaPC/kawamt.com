@@ -3,7 +3,7 @@ title: 持続可能ぬか漬け生活
 tags: ['diary']
 ---
 
-![アボカドのぬか漬け](https://cdn-ak.f.st-hatena.com/images/fotolife/h/hachipochi/20211018/20211018000657.jpg "アボカドのぬか漬け")
+![アボカドのぬか漬け](https://cdn-ak.f.st-hatena.com/images/fotolife/h/hachipochi/20211229/20211229120051.jpg "アボカドのぬか漬け")
 
 最近、自家製のぬか漬けにハマっている。
 食卓に美味しい漬物が一品並ぶようになると、食の豊かさが一段あがったように感じる。
@@ -17,7 +17,7 @@ tags: ['diary']
 
 ## 無印良品のぬか床を買う
 
-![無印良品のぬか床](https://cdn-ak.f.st-hatena.com/images/fotolife/h/hachipochi/20211018/20211018000754.jpg "ジップ付きのパックに入っており、そのまま運用できる")
+![無印良品のぬか床](https://cdn-ak.f.st-hatena.com/images/fotolife/h/hachipochi/20211229/20211229120118.jpg "ジップ付きのパックに入っており、そのまま運用できる")
 
 まずぬか床だが、自分で作る必要はない。無印に既に調味と発酵が済んだぬか床が売られている。
 原材料は「米ぬか、食塩、昆布、唐辛子、ビール酵母」と実にシンプルで、とても美味しい漬物を作ることができる。
@@ -48,21 +48,21 @@ tags: ['diary']
 
 ## ぬか漬け野菜たち
 
-![かぶのぬか漬け](https://cdn-ak.f.st-hatena.com/images/fotolife/h/hachipochi/20211018/20211018000747.jpg "かぶのぬか漬け")
+![かぶのぬか漬け](https://cdn-ak.f.st-hatena.com/images/fotolife/h/hachipochi/20211229/20211229120059.jpg "かぶのぬか漬け")
 
 個人的に一番のおすすめ。ジューシーです。そしてなにより美しい。
 半割にしても良い。かぶの風味を楽しみたければ丸まま漬けよう。
 
-![大和芋のぬか漬け](https://cdn-ak.f.st-hatena.com/images/fotolife/h/hachipochi/20211018/20211018000650.jpg "大和芋のぬか漬け")
+![大和芋のぬか漬け](https://cdn-ak.f.st-hatena.com/images/fotolife/h/hachipochi/20211229/20211229120734.jpg "大和芋のぬか漬け")
 
 山芋でも可。皮付きにするとお洒落。
 これも漬かりづらい部類だが、あえて浅漬けにして食べる時に塩を振るのが個人的に好き。
 
-![にんじんのぬか漬け](https://cdn-ak.f.st-hatena.com/images/fotolife/h/hachipochi/20211018/20211018000732.jpg "にんじんのぬか漬け")
+![にんじんのぬか漬け](https://cdn-ak.f.st-hatena.com/images/fotolife/h/hachipochi/20211229/20211229120041.jpg "にんじんのぬか漬け")
 
 欲張って一本漬けると確実に飽きるので気をつけよう。写真は丸のままだが、漬かりづらいので半割推奨。
 
-![アボカドのぬか漬け](https://cdn-ak.f.st-hatena.com/images/fotolife/h/hachipochi/20211018/20211018014858.jpg "アボカドのぬか漬け")
+![アボカドのぬか漬け](https://cdn-ak.f.st-hatena.com/images/fotolife/h/hachipochi/20211229/20211229120108.jpg "アボカドのぬか漬け")
 
 注意点としては、アボカドは必ず青いものを買おう。完熟したものを漬けると大変なことになるらしい。
 うまく漬けられれば複雑な風味のあるチーズのような味わいになる。お酒のアテに良さそう。
