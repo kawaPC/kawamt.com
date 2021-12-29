@@ -19,7 +19,6 @@ const AboutPage: React.FC = () => {
 
       <h2 className="text-xl font-bold mt-5">連絡先</h2>
       <Image
-        className="picture"
         src={"/mail_address.png"}
         alt="メールアドレス"
         title="メールアドレス"

@@ -65,25 +65,6 @@ img {
     bg-gray-200;
 }
 
-.unorderedList {
-  list-style-type: disc;
-  @apply my-4;
-}
-
-.unorderedList ul {
-  list-style-type: circle;
-  @apply my-0;
-}
-
-.unorderedList li .paragpraph {
-  margin-bottom: 0;
-  margin-top: 0;
-}
-
-.picture {
-  box-shadow: 0px 3px 8px rgb(51 51 51 / 20%);
-}
-
 /*
 prism.js theme
 */

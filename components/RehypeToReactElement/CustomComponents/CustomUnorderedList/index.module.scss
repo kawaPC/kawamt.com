@@ -1,0 +1,16 @@
+.unorderedList {
+  list-style-type: disc;
+  @apply my-4;
+
+  ul {
+    list-style-type: circle;
+    @apply my-0;
+  }
+
+  li {
+    p {
+      margin-bottom: 0;
+      margin-top: 0;
+    }
+  }
+}

@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { MAX_IMAGE_HEIGHT } from "utils/constants";
+import styles from "./index.module.scss";
 
 function calcMaxWidthStyle(width: string, height: string) {
   const nWidth = Number(width);
@@ -28,7 +29,7 @@ const CustomImage: React.VFC<Props> = ({ src, alt, title, width, height }) => {
       style={calcMaxWidthStyle(width, height)}
     >
       <Image
-        className="picture"
+        className={styles.picture}
         src={src}
         width={width}
         height={height}
