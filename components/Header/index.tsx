@@ -22,7 +22,7 @@ const Header: React.VFC = () => {
           写真
         </a>
         <Link href="/links">
-          <a aria-label="リンク一覧">リンク</a>
+          <a aria-label="リンク一覧">リンク集</a>
         </Link>
       </nav>
     </header>
