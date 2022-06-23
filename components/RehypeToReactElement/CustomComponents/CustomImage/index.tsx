@@ -35,7 +35,6 @@ const CustomImage: React.FC<Props> = ({ src, alt, title, width, height }) => {
         height={height}
         alt={alt}
         title={title}
-        placeholder={"blur"}
       />
       {title && (
         <figcaption className="text-center text-xs text-gray-600 mt-2">
