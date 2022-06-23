@@ -1,6 +1,10 @@
 import styles from "./index.module.scss";
 
-const CustomUnorderedList: React.FC = ({ children }) => {
+type Props = {
+  children: React.ReactNode;
+};
+
+const CustomUnorderedList: React.FC<Props> = ({ children }) => {
   return <ul className={`ml-6 ${styles.unorderedList}`}>{children}</ul>;
 };
 
