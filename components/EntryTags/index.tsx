@@ -4,7 +4,7 @@ type Props = {
   tags: string[];
 };
 
-const EntryTags: React.VFC<Props> = ({ tags }) => {
+const EntryTags: React.FC<Props> = ({ tags }) => {
   return (
     <div className="font-mono text-gray-500 space-x-2">
       {tags.map((tag) => (

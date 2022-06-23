@@ -5,7 +5,7 @@ type Props = {
   href: string;
 };
 
-const CustomLink: React.VFC<Props> = ({ children, href }) =>
+const CustomLink: React.FC<Props> = ({ children, href }) =>
   href.startsWith("https://kawamt.com") ? (
     <Link href={href.replace("https://kawamt.com", "")} prefetch={false}>
       <a className="underline font-medium text-blue-600">{children}</a>

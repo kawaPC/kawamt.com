@@ -5,7 +5,7 @@ type Props = {
   title?: string;
 };
 
-const ReadMore: React.VFC<Props> = ({ slug, title }) => {
+const ReadMore: React.FC<Props> = ({ slug, title }) => {
   return (
     <div className="text-center mt-8">
       <Link href={`/entry/${slug}`}>

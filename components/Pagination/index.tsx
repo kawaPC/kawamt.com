@@ -6,7 +6,7 @@ type Props = {
   isLast: boolean;
 };
 
-const Pagination: React.VFC<Props> = ({ page, tag, isLast }) => {
+const Pagination: React.FC<Props> = ({ page, tag, isLast }) => {
   const basePath = tag ? `/entry/tags/${tag}/page` : "/entry/page";
 
   return (

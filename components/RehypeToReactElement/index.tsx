@@ -15,7 +15,7 @@ type Props = {
   htmlSource: string;
 };
 
-const RehypeToReactElement: React.VFC<Props> = ({ htmlSource }) => {
+const RehypeToReactElement: React.FC<Props> = ({ htmlSource }) => {
   return <>{rehypeToReactProcessor.processSync(htmlSource).result}</>;
 };
 

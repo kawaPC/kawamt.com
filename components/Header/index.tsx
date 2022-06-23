@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-const Header: React.VFC = () => {
+const Header: React.FC = () => {
   return (
     <header className="flex flex-col items-center md:items-end md:flex-row md:justify-between">
       <div className="text-4xl text-gray-600">

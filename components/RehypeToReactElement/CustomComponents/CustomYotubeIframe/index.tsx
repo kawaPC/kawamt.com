@@ -4,7 +4,7 @@ type Props = {
   height: string;
 };
 
-const CustomYotubeIframe: React.VFC<Props> = ({ src, width, height }) => {
+const CustomYotubeIframe: React.FC<Props> = ({ src, width, height }) => {
   return (
     <div className="flex justify-center py-4">
       <iframe

@@ -22,7 +22,7 @@ type Props = {
   height: string;
 };
 
-const CustomImage: React.VFC<Props> = ({ src, alt, title, width, height }) => {
+const CustomImage: React.FC<Props> = ({ src, alt, title, width, height }) => {
   return (
     <figure
       className="mx-auto mt-5 pb-5"

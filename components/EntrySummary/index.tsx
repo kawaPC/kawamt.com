@@ -5,7 +5,7 @@ import { RehypeToReactElement } from "components/RehypeToReactElement";
 import { Title } from "components/Typography/Title";
 import { IEntry } from "types/entry";
 
-const EntrySummary: React.VFC<IEntry> = ({
+const EntrySummary: React.FC<IEntry> = ({
   slug,
   date,
   formatDate,
