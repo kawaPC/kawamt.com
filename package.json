@@ -19,6 +19,7 @@
     "@mapbox/rehype-prism": "^0.7.0",
     "@types/mkdirp": "^1.0.2",
     "@types/react": "^18.0.14",
+    "@types/react-dom": "^18.0.5",
     "@types/remove-markdown": "^0.3.1",
     "@types/rss": "^0.0.29",
     "autoprefixer": "^10.4.0",
