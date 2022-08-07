@@ -3,7 +3,7 @@ title: このサイトのスコア
 tags: ['dev']
 ---
 
-![Lighthouseのスコア](https://cdn-ak.f.st-hatena.com/images/fotolife/h/hachipochi/20210813/20210813022750.png "Lighthouseのスコア")
+![Lighthouseのスコア](screenshot_2021-07-30_14.46.44.png "Lighthouseのスコア")
 
 このブログのLighthouseスコアを貼っておく。
 

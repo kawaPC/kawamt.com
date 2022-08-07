@@ -3,7 +3,7 @@ title: 引っ越しに合わせて買ったもの一覧
 tags: ['diary']
 ---
 
-![冷蔵庫と棚](https://cdn-ak.f.st-hatena.com/images/fotolife/h/hachipochi/20210822/20210822233806.jpg)
+![冷蔵庫と棚](IMG_6338.jpg)
 
 引っ越しに合わせて買った家具や雑貨などの記録。
 
@@ -11,7 +11,7 @@ tags: ['diary']
 
 ## フライパン
 
-![Meyer スターシェフ2 20cm/26cm](https://cdn-ak.f.st-hatena.com/images/fotolife/h/hachipochi/20210822/20210822233737.jpg "Meyer スターシェフ2 20cm/26cm")
+![Meyer スターシェフ2 20cm/26cm](A22183B1-5652-45CD-803F-31C8285EA365.jpg "Meyer スターシェフ2 20cm/26cm")
 
 僕が勝手に料理の師匠として仰いでいる樋口直哉先生おすすめの品。
 
@@ -29,7 +29,7 @@ Meyerのフライパンであれば、確実に落ち着いた調理ができる
 
 ## 冷蔵庫
 
-![AQUA AQR-36K-W](https://cdn-ak.f.st-hatena.com/images/fotolife/h/hachipochi/20210823/20210823160012.jpg "AQUA AQR-36K-W")
+![AQUA AQR-36K-W](D72EEE0E-B570-4C1B-82AD-81421C3F344D.jpg "AQUA AQR-36K-W")
 
 以前は無印の小さい冷蔵庫でなんとかやりくりしていたが、生協を頼むようになってからはかなり厳しくなってきていたので購入。
 
@@ -46,7 +46,7 @@ Meyerのフライパンであれば、確実に落ち着いた調理ができる
 
 ## 棚
 
-![無印良品 スチールユニットシェルフ](https://cdn-ak.f.st-hatena.com/images/fotolife/h/hachipochi/20210823/20210823162538.jpg "無印良品 スチールユニットシェルフ")
+![無印良品 スチールユニットシェルフ](09AC4AF3-C911-43FF-B562-16397D428049.jpg "無印良品 スチールユニットシェルフ")
 
 新居のシステムキッチンは実に使いやすいのだが、収納力が少し心許なかったため、棚を置くことに。
 
@@ -59,7 +59,7 @@ Meyerのフライパンであれば、確実に落ち着いた調理ができる
 
 ## ルーター
 
-![NEC Aterm WG2600HS2](https://cdn-ak.f.st-hatena.com/images/fotolife/h/hachipochi/20210822/20210822233748.jpg "NEC Aterm WG2600HS2")
+![NEC Aterm WG2600HS2](5D3438C8-82AF-4573-AB10-C30A07B1AC41.jpg "NEC Aterm WG2600HS2")
 
 こちらは購入したものではなくプロバイダのキャンペーンによる無料レンタル品。
 部屋が3部屋になった影響でWiFiが届かないエリアが発生したため、中継機として2台目を置くことにした。
@@ -68,7 +68,7 @@ Meyerのフライパンであれば、確実に落ち着いた調理ができる
 
 ## 浄水器
 
-![クリンスイ MONOシリーズ MD101](https://cdn-ak.f.st-hatena.com/images/fotolife/h/hachipochi/20210822/20210822233726.jpg "クリンスイ MONOシリーズ MD101")
+![クリンスイ MONOシリーズ MD101](BCFD905F-BC10-41AC-BBD2-E059C831EBFD.jpg "クリンスイ MONOシリーズ MD101")
 
 飲料水はこれまでAmazonで定期的にミネラルウォーターを購入していた。
 購入の手間やゴミの発生などを考慮すると、ずいぶん楽になったと思う。
