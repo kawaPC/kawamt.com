@@ -20,9 +20,17 @@ type Props = {
   title?: string;
   width: string;
   height: string;
+  placeholder?: string;
 };
 
-const CustomImage: React.FC<Props> = ({ src, alt, title, width, height }) => {
+const CustomImage: React.FC<Props> = ({
+  src,
+  alt,
+  title,
+  width,
+  height,
+  placeholder,
+}) => {
   return (
     <figure
       className="mx-auto mt-5 pb-5"
@@ -35,6 +43,8 @@ const CustomImage: React.FC<Props> = ({ src, alt, title, width, height }) => {
         height={height}
         alt={alt}
         title={title}
+        placeholder="blur"
+        blurDataURL={placeholder}
       />
       {title && (
         <figcaption className="text-center text-xs text-gray-600 mt-2">
