@@ -17,6 +17,9 @@ const AppHead: React.FC<Props> = ({
   rssPath,
 }) => {
   const url = path ? `${APP_ROOT}${path}` : "";
+  const ogImageUrl = ogImage
+    ? `${process.env.NEXT_PUBLIC_IMG_PRIMITIVE_DOMAIN}/${ogImage}.jpg`
+    : `${APP_ROOT}/og_image.png`;
 
   return (
     <Head>
@@ -36,10 +39,7 @@ const AppHead: React.FC<Props> = ({
       />
       <meta property="og:url" content={url || APP_ROOT} />
       <meta name="twitter:card" content="summary_large_image" />
-      <meta
-        property="og:image"
-        content={ogImage || `${APP_ROOT}/og_image.png`}
-      />
+      <meta property="og:image" content={ogImageUrl} />
     </Head>
   );
 };

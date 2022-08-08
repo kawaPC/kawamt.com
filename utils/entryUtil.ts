@@ -48,8 +48,8 @@ export const getEntry = async (slug: string): Promise<IEntry> => {
 
   const plainText = removeMarkdown(content, { useImgAltText: false });
   const description = plainText.replace(/\n/g, "").substr(0, 120);
-  const ogImageRegex = content.match(/http.*(png|jpg)/);
-  const ogImage = ogImageRegex ? ogImageRegex[0] : undefined;
+  const ogImageRegex = content.match(/\]\((.*)\.(?:jpeg|jpg|png|gif|svg)/i);
+  const ogImage = ogImageRegex ? ogImageRegex[1] : undefined;
 
   const [introduction, body] = content.split("***");
   const introductionSource = await markdownToHtml(introduction);

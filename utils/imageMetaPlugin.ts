@@ -28,9 +28,9 @@ function isImageNode(node: Node): node is ImageNode {
 async function addProps(node: ImageNode): Promise<void> {
   let res: ISizeCalculationResult | undefined;
 
-  const imageSrc = `${process.env.IMG_DOMAIN}/${node.properties.src}`;
+  const imageSrc = `${process.env.NEXT_PUBLIC_IMG_DOMAIN}/${node.properties.src}`;
   const primitiveImageSrc = `${
-    process.env.IMG_PRIMITIVE_DOMAIN
+    process.env.NEXT_PUBLIC_IMG_PRIMITIVE_DOMAIN
   }/${node.properties.src.replace(/\.(?:jpeg|jpg|png|gif)/i, ".svg")}`;
 
   node.properties.src = imageSrc;
