@@ -17,7 +17,7 @@ tags: ['diary', 'dev']
 
 ということでプロジェクターが大活躍。
 
-![RTA in Japan Summer 2021の模様](https://cdn-ak.f.st-hatena.com/images/fotolife/h/hachipochi/20211229/20211229115926.jpg "RTA in Japan Summer 2021の模様")
+![RTA in Japan Summer 2021の模様](8686BA4A-436A-41BD-94DE-C1F6CCDA2F99_2.jpg "RTA in Japan Summer 2021の模様")
 
 ただ、大画面にするとコメントの視認性が悪い。
 高速で流れるチャットはRTA in Japanの醍醐味のひとつでもあるので何とかしたい。
@@ -62,7 +62,7 @@ head.appendChild(style3);
 やっていることは上記のとおり、単にCSSを上書きして表示を消したりサイズを変えたりしているだけ。
 あまり精査してませんが上手いこと動いてくれました。
 
-![チャットを読みやすくした](https://cdn-ak.f.st-hatena.com/images/fotolife/h/hachipochi/20211229/20211229114411.jpg "")
+![チャットを読みやすくした](IMG_6968.jpg "")
 
 チャットがスッキリ大きく読みやすくなりました。
 良かったですね。
