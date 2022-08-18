@@ -22,7 +22,6 @@ const IndexTaggedEntryPerPage: React.FC<Props> = ({
   return (
     <section className="space-y-16 mt-10">
       <AppHead
-        path={`/entry/tags/${tag}/page/${page}`}
         rssPath={`/entry/tags/${tag}`}
         title={`${page}ページ目の記事一覧 [${tag}]`}
         description={`${page}ページ目の記事一覧 [${tag}]`}

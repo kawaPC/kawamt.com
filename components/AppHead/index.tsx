@@ -25,7 +25,7 @@ const AppHead: React.FC<Props> = ({
     <Head>
       <title>{title || SITE_NAME}</title>
       <meta name="description" content={description || SITE_DESCRIPTION} />
-      <link rel="canonical" href={url || APP_ROOT} />
+      {url && <link rel="canonical" href={url} />}
       <link
         rel="alternate"
         type="application/rss+xml"
