@@ -52,10 +52,6 @@ hr {
   @apply my-16;
 }
 
-img {
-  image-rendering: -webkit-optimize-contrast;
-}
-
 :not(pre) > code {
   font-family: Menlo, Monaco, Consolas, "Andale Mono", "Ubuntu Mono",
     "Courier New", monospace;
