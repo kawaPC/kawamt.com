@@ -25,8 +25,8 @@ const IndexTaggedEntry: React.FC<Props> = ({ tag, path, entries, isLast }) => {
       />
 
       <h1 className="text-center text-gray-600">
-        <Link href={path} className="text-3xl">
-          {`#${tag}`}
+        <Link href={path}>
+          <a className="text-3xl">{`#${tag}`}</a>
         </Link>
       </h1>
 
