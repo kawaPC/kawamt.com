@@ -8,7 +8,13 @@ type Props = {
 const Title: React.FC<Props> = ({ href, children }) => {
   return (
     <div className="text-2xl">
-      {href ? <Link href={href}>{children}</Link> : children}
+      {href ? (
+        <Link href={href}>
+          <a>{children}</a>
+        </Link>
+      ) : (
+        children
+      )}
     </div>
   );
 };
