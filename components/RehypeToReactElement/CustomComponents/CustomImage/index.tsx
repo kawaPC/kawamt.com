@@ -39,8 +39,8 @@ const CustomImage: React.FC<Props> = ({
       <Image
         className={styles.picture}
         src={src}
-        width={Number(width)}
-        height={Number(height)}
+        width={width}
+        height={height}
         alt={alt}
         title={title}
         placeholder="blur"
