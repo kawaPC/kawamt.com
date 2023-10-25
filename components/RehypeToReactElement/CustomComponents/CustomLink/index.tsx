@@ -7,8 +7,12 @@ type Props = {
 
 const CustomLink: React.FC<Props> = ({ children, href }) =>
   href.startsWith("https://kawamt.com") ? (
-    <Link href={href.replace("https://kawamt.com", "")} prefetch={false}>
-      <a className="underline font-medium text-blue-600">{children}</a>
+    <Link
+      href={href.replace("https://kawamt.com", "")}
+      prefetch={false}
+      className="underline font-medium text-blue-600"
+    >
+      {children}
     </Link>
   ) : (
     <a
