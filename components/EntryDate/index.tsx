@@ -9,8 +9,8 @@ type Props = {
 const EntryDate: React.FC<Props> = ({ date, href, children }) => {
   return (
     <time dateTime={date}>
-      <Link href={href}>
-        <a className="font-mono text-xl">{children}</a>
+      <Link className="font-mono text-xl" href={href}>
+        {children}
       </Link>
     </time>
   );

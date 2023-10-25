@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from "next/legacy/image";
 import { MAX_IMAGE_HEIGHT } from "utils/constants";
 import styles from "./index.module.scss";
 
@@ -39,8 +39,8 @@ const CustomImage: React.FC<Props> = ({
       <Image
         className={styles.picture}
         src={src}
-        width={width}
-        height={height}
+        width={Number(width)}
+        height={Number(height)}
         alt={alt}
         title={title}
         placeholder="blur"

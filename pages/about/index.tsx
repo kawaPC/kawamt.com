@@ -1,5 +1,5 @@
 import { AppHead } from "components/AppHead";
-import Image from "next/image";
+import Image from "next/legacy/image";
 
 const AboutPage: React.FC = () => {
   return (

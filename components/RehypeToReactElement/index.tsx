@@ -6,6 +6,7 @@ import { CustomComponents } from "./CustomComponents";
 
 const rehypeToReactProcessor = unified()
   .use(rehypeParse, { fragment: true })
+  // @ts-ignore
   .use(rehypeReact, {
     createElement: createElement,
     components: CustomComponents,
