@@ -2,7 +2,6 @@ import imageSize from "image-size";
 import { ISizeCalculationResult } from "image-size/dist/types/interface";
 import { Node } from "unist";
 import { visit } from "unist-util-visit";
-import svgToMiniDataURI from "mini-svg-data-uri";
 
 type ImageNode = {
   type: "element";
@@ -24,6 +23,23 @@ function isImageNode(node: Node): node is ImageNode {
     typeof img.properties.src === "string"
   );
 }
+
+// function resContentToDataUri(res: Response): Promise<string> {
+//   return res.blob().then(
+//     (blob) =>
+//       new Promise((resolve) => {
+//         let reader = new FileReader();
+//         reader.onload = function () {
+//           if (reader.result && typeof reader.result === "string") {
+//             resolve(reader.result);
+//           } else {
+//             new Error("Failed to read file");
+//           }
+//         };
+//         reader.readAsDataURL(blob);
+//       })
+//   );
+// }
 
 async function addProps(node: ImageNode): Promise<void> {
   let res: ISizeCalculationResult | undefined;
@@ -49,8 +65,9 @@ async function addProps(node: ImageNode): Promise<void> {
   const primitiveImageRes = await fetch(primitiveImageSrc);
 
   if (primitiveImageRes.ok) {
-    const svg = await primitiveImageRes.text();
-    node.properties.placeholder = svgToMiniDataURI(svg);
+    const primitiveImageResBuffer = await primitiveImageRes.arrayBuffer();
+    const base64 = Buffer.from(primitiveImageResBuffer).toString("base64");
+    node.properties.placeholder = base64;
   }
 
   node.properties.width = res.width;
