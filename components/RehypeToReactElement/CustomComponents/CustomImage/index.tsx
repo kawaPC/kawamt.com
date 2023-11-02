@@ -1,4 +1,4 @@
-import Image from "next/legacy/image";
+import Image from "next/image";
 import { MAX_IMAGE_HEIGHT } from "utils/constants";
 import styles from "./index.module.scss";
 
@@ -43,7 +43,7 @@ const CustomImageBase: React.FC<Props> = ({
         src={src}
         width={Number(width)}
         height={Number(height)}
-        alt={alt}
+        alt={alt || ""}
         title={title}
         placeholder={enabledPlaceholder ? "blur" : undefined}
         blurDataURL={enabledPlaceholder ? placeholder : undefined}
