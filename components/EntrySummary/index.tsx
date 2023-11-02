@@ -26,7 +26,7 @@ const EntrySummary: React.FC<IEntry> = ({
 
       {tags && <EntryTags tags={tags} />}
 
-      <RehypeToReactElement htmlSource={introductionSource} isSummary />
+      <RehypeToReactElement htmlSource={introductionSource} />
       {!isShort && <ReadMore title={title} slug={slug} />}
     </article>
   );
