@@ -20,17 +20,15 @@ type Props = {
   title?: string;
   width: string;
   height: string;
-  enabledPlaceholder?: boolean;
   placeholder?: string;
 };
 
-const CustomImageBase: React.FC<Props> = ({
+const CustomImage: React.FC<Props> = ({
   src,
   alt,
   title,
   width,
   height,
-  enabledPlaceholder = false,
   placeholder,
 }) => {
   return (
@@ -45,8 +43,7 @@ const CustomImageBase: React.FC<Props> = ({
         height={Number(height)}
         alt={alt || ""}
         title={title}
-        placeholder={enabledPlaceholder ? "blur" : undefined}
-        blurDataURL={enabledPlaceholder ? placeholder : undefined}
+        placeholder={`data:image/svg+xml;base64,${placeholder}`}
       />
       {title && (
         <figcaption className="text-center text-xs text-gray-600 mt-2">
@@ -57,10 +54,4 @@ const CustomImageBase: React.FC<Props> = ({
   );
 };
 
-const CustomImage = CustomImageBase;
-
-const CustomImageWithPlaceholder: React.FC<Props> = (props) => {
-  return CustomImageBase({ ...props, enabledPlaceholder: true });
-};
-
-export { CustomImage, CustomImageWithPlaceholder };
+export { CustomImage };
