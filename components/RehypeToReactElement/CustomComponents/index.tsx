@@ -1,4 +1,4 @@
-import { CustomImage, CustomImageWithPlaceholder } from "./CustomImage";
+import { CustomImageWithPlaceholder } from "./CustomImage";
 import { CustomLink } from "./CustomLink";
 import { CustomParagraph } from "./CustomParagraph";
 import { CustomUnorderedList } from "./CustomUnorderedList";
@@ -8,7 +8,7 @@ import { CustomYotubeIframe } from "./CustomYotubeIframe";
 export const CustomComponents = {
   p: CustomParagraph,
   a: CustomLink,
-  img: CustomImage,
+  img: CustomImageWithPlaceholder,
   ul: CustomUnorderedList,
   blockquote: CustomBlockquote,
   iframe: CustomYotubeIframe,
