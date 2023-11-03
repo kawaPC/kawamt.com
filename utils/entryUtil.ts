@@ -197,3 +197,24 @@ export function getTaggedEntryPerPagePaths(): TaggedEntryPerPagePath[] {
     }));
   });
 }
+
+export type TaggedEntryPerPageParams = {
+  tag: string;
+  page: string;
+};
+
+export function getTaggedEntryPerPageParams(): TaggedEntryPerPageParams[] {
+  const entries = getEntryTags();
+  const tags = entries.flatMap((entry) => entry.tags).uniq();
+
+  return tags.flatMap((tag) => {
+    const total = entries.filter((entry) => entry.tags.includes(tag)).length;
+
+    const pageCount = Math.ceil(total / COUNT_PER_PAGE);
+
+    return range(1, pageCount).map((page) => ({
+      tag: tag,
+      page: String(page),
+    }));
+  });
+}
