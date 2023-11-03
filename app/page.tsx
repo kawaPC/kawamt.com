@@ -2,7 +2,7 @@ import { EntrySummary } from "components/EntrySummary";
 import { Pagination } from "components/Pagination";
 import { getEntries } from "utils/entryUtil";
 
-export default async function APP_ROOT() {
+export default async function Page() {
   const { entries, isLast } = await getEntries(1);
 
   return (

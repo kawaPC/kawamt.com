@@ -9,7 +9,7 @@ export const metadata: Metadata = createMetadata({
   description: "私について",
 });
 
-export default function AboutPage() {
+export default function Page() {
   return (
     <section className="mt-10">
       <AppHead path="/about" title={"about"} description={"私について"} />
