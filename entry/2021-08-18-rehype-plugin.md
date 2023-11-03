@@ -3,7 +3,7 @@ title: 初めてのnpmパッケージ公開
 tags: ['dev']
 ---
 
-![公開したnpmパッケージ](screenshot_2021-08-18_17.41.29.png)
+![公開したnpmパッケージ](screenshot_2021-08-18_17.41.29.jpg)
 
 [rehype-probe-image-size](https://www.npmjs.com/package/rehype-probe-image-size)というRehype Pluginをnpmパッケージとして公開した。
 記事内の画像URLから画像サイズを取得し、imgタグにwidth/heightをセットしてくれる。

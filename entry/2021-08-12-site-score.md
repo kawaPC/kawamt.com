@@ -3,7 +3,7 @@ title: このサイトのスコア
 tags: ['dev']
 ---
 
-![Lighthouseのスコア](screenshot_2021-07-30_14.46.44.png "Lighthouseのスコア")
+![Lighthouseのスコア](screenshot_2021-07-30_14.46.44.jpg "Lighthouseのスコア")
 
 このブログのLighthouseスコアを貼っておく。
 
