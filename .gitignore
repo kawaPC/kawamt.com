@@ -34,6 +34,5 @@ yarn-error.log*
 .vercel
 
 # build
-rss.xml
 robots.txt
 sitemap.xml
