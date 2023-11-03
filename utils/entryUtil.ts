@@ -147,6 +147,19 @@ type TaggedEntryPath = {
   };
 };
 
+export type EntryPerPageParams = {
+  page: string;
+};
+
+export function getEntryPerPageParams(): EntryPerPageParams[] {
+  const slugs = getEntrySlugs();
+  const pageCount = Math.ceil(slugs.length / COUNT_PER_PAGE);
+
+  return range(1, pageCount).map((page) => ({
+    page: String(page),
+  }));
+}
+
 export function getTaggedEntryPaths(): TaggedEntryPath[] {
   const tags = getEntryTags()
     .flatMap((entry) => entry.tags)
