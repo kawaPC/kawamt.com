@@ -159,6 +159,20 @@ export function getTaggedEntryPaths(): TaggedEntryPath[] {
   }));
 }
 
+export type TaggedEntryParams = {
+  tag: string;
+};
+
+export function getTaggedEntryParams(): TaggedEntryParams[] {
+  const tags = getEntryTags()
+    .flatMap((entry) => entry.tags)
+    .uniq();
+
+  return tags.map((tag) => ({
+    tag: tag,
+  }));
+}
+
 type TaggedEntryPerPagePath = {
   params: {
     tag: string;
