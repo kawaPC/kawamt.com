@@ -7,7 +7,7 @@ import { IEntry } from "types/entry";
 
 const PUBLIC_PATH = join(process.cwd(), "public");
 
-function generateEntryRssXml(entries: IEntry[], path: string) {
+export function generateEntryRssXml(entries: IEntry[], path: string) {
   const rss = new RSS({
     title: SITE_NAME,
     description: SITE_DESCRIPTION,
