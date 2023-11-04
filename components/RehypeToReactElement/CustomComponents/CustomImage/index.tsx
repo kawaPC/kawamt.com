@@ -43,7 +43,7 @@ const CustomImage: React.FC<Props> = ({
         // height={Number(height)}
         alt={alt || ""}
         title={title}
-        placeholder={`data:image/svg+xml;base64,${placeholder}`}
+        // placeholder={`data:image/svg+xml;base64,${placeholder}`}
       />
       {title && (
         <figcaption className="text-center text-xs text-gray-600 mt-2">
