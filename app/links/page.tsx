@@ -1,9 +1,15 @@
-import { AppHead } from "components/AppHead";
+import { Metadata } from "next";
+import { createMetadata } from "utils/metadata";
 
-const LinksPage: React.FC = () => {
+export const metadata: Metadata = createMetadata({
+  path: "/links",
+  title: "リンク一覧",
+  description: "リンク一覧",
+});
+
+export default function Page() {
   return (
     <section className="mt-10">
-      <AppHead path="/links" title="リンク一覧" description="リンク一覧" />
       <h1 className="text-2xl font-bold">リンク一覧</h1>
       <div className="mt-4 space-y-4">
         <div>
@@ -18,6 +24,4 @@ const LinksPage: React.FC = () => {
       </div>
     </section>
   );
-};
-
-export default LinksPage;
+}
