@@ -51,7 +51,7 @@ async function addProps(node: ImageNode): Promise<void> {
 
   node.properties.src = imageSrc;
 
-  const imageRes = await fetch(imageSrc);
+  const imageRes = await fetch(imageSrc, { cache: "no-store" });
   if (!imageRes.ok) {
     throw Error(`Invalid image with src "${node.properties.src}"`);
   }
