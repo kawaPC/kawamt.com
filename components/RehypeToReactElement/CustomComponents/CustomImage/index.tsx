@@ -34,13 +34,13 @@ const CustomImage: React.FC<Props> = ({
   return (
     <figure
       className="mx-auto mt-5 pb-5"
-      style={calcMaxWidthStyle(width, height)}
+      // style={calcMaxWidthStyle(width, height)}
     >
       <Image
         className={styles.picture}
         src={src}
-        width={Number(width)}
-        height={Number(height)}
+        // width={Number(width)}
+        // height={Number(height)}
         alt={alt || ""}
         title={title}
         placeholder={`data:image/svg+xml;base64,${placeholder}`}
