@@ -24,11 +24,12 @@ function isImageNode(node: Node): node is ImageNode {
 }
 
 async function addProps(node: ImageNode): Promise<void> {
-  const src = node.properties.src as keyof typeof imageSizes;
+  const filename = node.properties.src as keyof typeof imageSizes;
 
-  const data = imageSizes[src];
+  const data = imageSizes[filename];
 
   if (data) {
+    node.properties.src = `${process.env.NEXT_PUBLIC_IMG_DOMAIN}/${filename}`;
     node.properties.width = data.width;
     node.properties.height = data.height;
     node.properties.placeholder = data.base64;
