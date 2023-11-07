@@ -98,6 +98,12 @@ export const getEntries = async (
   return { entries, isLast };
 };
 
+export function getAllEntries(): Entry[] {
+  const slugs = getEntrySlugs();
+
+  return slugs.map((slug) => loadEntry(slug));
+}
+
 export function getAllEntrySlugs(): string[] {
   const slugs = getEntrySlugs();
 
