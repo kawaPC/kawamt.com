@@ -1,7 +1,15 @@
 import { AppHead } from "components/AppHead";
+import { Metadata } from "next";
 import Image from "next/image";
+import { createMetadata } from "utils/metadata";
 
-const AboutPage: React.FC = () => {
+export const metadata: Metadata = createMetadata({
+  path: "/about",
+  title: "about",
+  description: "私について",
+});
+
+export default function Page() {
   return (
     <section className="mt-10">
       <AppHead path="/about" title={"about"} description={"私について"} />
@@ -27,6 +35,4 @@ const AboutPage: React.FC = () => {
       />
     </section>
   );
-};
-
-export default AboutPage;
+}

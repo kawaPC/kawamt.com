@@ -130,49 +130,39 @@ function getEntryTags(): { slug: string; tags: string[] }[] {
   });
 }
 
-type EntryPerPagePath = {
-  params: {
-    page: string;
-  };
+export type EntryPerPageParams = {
+  page: string;
 };
 
-export function getEntryPerPagePaths(): EntryPerPagePath[] {
+export function getEntryPerPageParams(): EntryPerPageParams[] {
   const slugs = getEntrySlugs();
   const pageCount = Math.ceil(slugs.length / COUNT_PER_PAGE);
 
   return range(1, pageCount).map((page) => ({
-    params: {
-      page: String(page),
-    },
+    page: String(page),
   }));
 }
 
-type TaggedEntryPath = {
-  params: {
-    tag: string;
-  };
+export type TaggedEntryParams = {
+  tag: string;
 };
 
-export function getTaggedEntryPaths(): TaggedEntryPath[] {
+export function getTaggedEntryParams(): TaggedEntryParams[] {
   const tags = getEntryTags()
     .flatMap((entry) => entry.tags)
     .uniq();
 
   return tags.map((tag) => ({
-    params: {
-      tag: tag,
-    },
+    tag: tag,
   }));
 }
 
-type TaggedEntryPerPagePath = {
-  params: {
-    tag: string;
-    page: string;
-  };
+export type TaggedEntryPerPageParams = {
+  tag: string;
+  page: string;
 };
 
-export function getTaggedEntryPerPagePaths(): TaggedEntryPerPagePath[] {
+export function getTaggedEntryPerPageParams(): TaggedEntryPerPageParams[] {
   const entries = getEntryTags();
   const tags = entries.flatMap((entry) => entry.tags).uniq();
 
@@ -182,10 +172,8 @@ export function getTaggedEntryPerPagePaths(): TaggedEntryPerPagePath[] {
     const pageCount = Math.ceil(total / COUNT_PER_PAGE);
 
     return range(1, pageCount).map((page) => ({
-      params: {
-        tag: tag,
-        page: String(page),
-      },
+      tag: tag,
+      page: String(page),
     }));
   });
 }
