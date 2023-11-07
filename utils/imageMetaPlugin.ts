@@ -1,7 +1,6 @@
-import imageSize from "image-size";
-import { ISizeCalculationResult } from "image-size/dist/types/interface";
 import { Node } from "unist";
 import { visit } from "unist-util-visit";
+import imageSizes from "static/imageSizes.json";
 
 type ImageNode = {
   type: "element";
@@ -24,54 +23,17 @@ function isImageNode(node: Node): node is ImageNode {
   );
 }
 
-// function resContentToDataUri(res: Response): Promise<string> {
-//   return res.blob().then(
-//     (blob) =>
-//       new Promise((resolve) => {
-//         let reader = new FileReader();
-//         reader.onload = function () {
-//           if (reader.result && typeof reader.result === "string") {
-//             resolve(reader.result);
-//           } else {
-//             new Error("Failed to read file");
-//           }
-//         };
-//         reader.readAsDataURL(blob);
-//       })
-//   );
-// }
-
 async function addProps(node: ImageNode): Promise<void> {
-  let res: ISizeCalculationResult | undefined;
+  const filename = node.properties.src as keyof typeof imageSizes;
 
-  const imageSrc = `${process.env.NEXT_PUBLIC_IMG_DOMAIN}/${node.properties.src}`;
-  const primitiveImageSrc = `${
-    process.env.NEXT_PUBLIC_IMG_PRIMITIVE_DOMAIN
-  }/${node.properties.src.replace(/\.(?:jpeg|jpg|png|gif)/i, ".svg")}`;
+  const data = imageSizes[filename];
 
-  node.properties.src = imageSrc;
-
-  const imageRes = await fetch(imageSrc, { cache: "no-store" });
-  if (!imageRes.ok) {
-    throw Error(`Invalid image with src "${node.properties.src}"`);
+  if (data) {
+    node.properties.src = `${process.env.NEXT_PUBLIC_IMG_DOMAIN}/${filename}`;
+    node.properties.width = data.width;
+    node.properties.height = data.height;
+    node.properties.placeholder = data.base64;
   }
-  const imageResArrayBuffer = await imageRes.arrayBuffer();
-  const imageResBuffer = Buffer.from(imageResArrayBuffer);
-
-  res = imageSize(imageResBuffer);
-
-  if (!res) throw Error(`Invalid image with src "${node.properties.src}"`);
-
-  const primitiveImageRes = await fetch(primitiveImageSrc);
-
-  if (primitiveImageRes.ok) {
-    const primitiveImageResBuffer = await primitiveImageRes.arrayBuffer();
-    const base64 = Buffer.from(primitiveImageResBuffer).toString("base64");
-    node.properties.placeholder = base64;
-  }
-
-  node.properties.width = res.width;
-  node.properties.height = res.height;
 }
 
 const imageMetaPlugin = () => {

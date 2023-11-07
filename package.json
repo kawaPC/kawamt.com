@@ -3,8 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev -p 3080",
-    "build": "yarn build-css && next build && next-sitemap",
+    "dev": "NODE_OPTIONS='--require=./imageMeta.js' next dev -p 3080",
+    "build": "NODE_OPTIONS='--require=./imageMeta.js' yarn build-css && next build && next-sitemap",
     "build-css": "postcss styles/tailwind.scss --config postcss.config.js",
     "start": "next start",
     "lint": "next lint",
