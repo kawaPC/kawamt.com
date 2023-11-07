@@ -4,9 +4,9 @@
   "private": true,
   "scripts": {
     "dev": "NODE_OPTIONS='--require=./imageMeta.js' next dev -p 3080",
-    "build": "yarn build-css && next build && next-sitemap",
+    "build": "NODE_OPTIONS='--require=./imageMeta.js' yarn build-css && next build && next-sitemap",
     "build-css": "postcss styles/tailwind.scss --config postcss.config.js",
-    "start": "NODE_OPTIONS='--require=./imageMeta.js' next start",
+    "start": "next start",
     "lint": "next lint",
     "tsc": "tsc --noEmit"
   },
