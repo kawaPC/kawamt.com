@@ -37,3 +37,5 @@ yarn-error.log*
 rss.xml
 robots.txt
 sitemap.xml
+
+/static

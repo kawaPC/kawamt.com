@@ -8,7 +8,7 @@ module.exports = {
   images: {
     domains: ["storage.googleapis.com"],
   },
-  experimental: {
-    instrumentationHook: true,
-  },
+  // experimental: {
+  //   instrumentationHook: true,
+  // },
 };

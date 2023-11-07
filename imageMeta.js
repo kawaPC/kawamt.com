@@ -1,16 +1,27 @@
-import imageSize from "image-size";
-import { getAllEntries } from "utils/entryUtil";
-import fs from "fs";
-import mkdirp from "mkdirp";
+const { join } = require("path");
+const imageSize = require("image-size");
+const fs = require("fs");
+const mkdirp = require("mkdirp");
+
+const ENTRIES_PATH = join(process.cwd(), "entry/");
+
+const getAllEntries = () => {
+  const files = fs
+    .readdirSync(ENTRIES_PATH)
+    .filter((path) => /\.md?$/.test(path));
+
+  return files.map((file) => {
+    const path = join(ENTRIES_PATH, file);
+    return fs.readFileSync(path, "utf8");
+  });
+};
 
 const generateImageMetadataFromMarkdown = async () => {
   const entries = getAllEntries();
-  let images: string[] = [];
+  let images = [];
 
   entries.forEach((entry) => {
-    const imageSyntaxArr = entry.content.match(
-      /!\[.*\]\((.*\.(?:jpeg|jpg|png|gif))/g
-    );
+    const imageSyntaxArr = entry.match(/!\[.*\]\((.*\.(?:jpeg|jpg|png|gif))/g);
     imageSyntaxArr?.forEach((t) => {
       const filename = t.match(/\((.*?\.(?:jpeg|jpg|png|gif))/)?.[1];
 
@@ -22,10 +33,8 @@ const generateImageMetadataFromMarkdown = async () => {
 
   images = Array.from(new Set(images));
 
-  console.log({ images });
-
   const imageSizePromises = images.map(async (image) => {
-    const imageSrc = `${process.env.NEXT_PUBLIC_IMG_DOMAIN}/${image}`;
+    const imageSrc = `https://storage.googleapis.com/kawamt/${image}`;
     const imageRes = await fetch(imageSrc, { cache: "no-store" });
     if (!imageRes.ok) {
       throw Error(`Invalid image with src "${imageSrc}"`);
@@ -35,13 +44,14 @@ const generateImageMetadataFromMarkdown = async () => {
 
     const { width, height } = imageSize(imageResBuffer);
 
-    const primitiveImageSrc = `${
-      process.env.NEXT_PUBLIC_IMG_PRIMITIVE_DOMAIN
-    }/${image.replace(/\.(?:jpeg|jpg|png|gif)/i, ".svg")}`;
+    const primitiveImageSrc = `https://storage.googleapis.com/kawamt/primitive/${image.replace(
+      /\.(?:jpeg|jpg|png|gif)/i,
+      ".svg"
+    )}`;
 
     const primitiveImageRes = await fetch(primitiveImageSrc);
 
-    let base64: string | undefined;
+    let base64;
 
     if (primitiveImageRes.ok) {
       const primitiveImageResBuffer = await primitiveImageRes.arrayBuffer();
