@@ -1,4 +1,3 @@
-import { Header } from "components/Header";
 import { Metadata } from "next";
 import { APP_ROOT, SITE_DESCRIPTION, SITE_NAME } from "utils/constants";
 import "styles/tailwind.scss";
@@ -32,9 +31,9 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({
-  children,
+    children,
 }: {
-  children: React.ReactNode;
+    children: React.ReactNode;
 }) {
   return (
     <html lang="ja">
@@ -47,10 +46,7 @@ export default function RootLayout({
         />
       </head>
       <body>
-        <div className="container mx-auto px-3 md:px-5 pt-8 pb-14 max-w-4xl">
-          <Header />
-          <main>{children}</main>
-        </div>
+      {children}
       </body>
     </html>
   );
