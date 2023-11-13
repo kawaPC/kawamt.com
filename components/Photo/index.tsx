@@ -77,12 +77,12 @@ export const Photo: React.FC<Props> = ({
 
   return (
     <>
-      <div className="absolute w-full h-full invisible">
+      <div className="absolute w-full h-full">
         <div className="w-full h-full sm:p-3 inline-flex flex-col">
           <div className="flex-1" ref={ref}></div>
           {(datetime || exifText) && (
             <div
-              className="flex flex-wrap gap-x-4 justify-between text-[10px] leading-[20px] p-2 sm:pb-0"
+              className="flex flex-wrap gap-x-4 justify-between text-[10px] leading-[20px] p-2 sm:pb-0 invisible"
               style={{ width: imageSizes?.width }}
             >
               <span>{datetime}</span>
@@ -96,8 +96,8 @@ export const Photo: React.FC<Props> = ({
           <div className="bg-white border sm:p-3 shadow-lg inline-flex flex-col">
             <Image
               src={src}
-              width={imageWidth}
-              height={imageHeight}
+              width={imageSizes.width}
+              height={imageSizes.height}
               alt={name}
               placeholder={placeholder}
             />
