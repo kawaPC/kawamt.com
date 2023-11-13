@@ -50,15 +50,6 @@ export const Photo: React.FC<Props> = ({
   useEffect(() => {
     if (!ref.current || !imageWidth || !imageHeight) return;
 
-    setImageSizes(
-      calcImageSize(
-        imageWidth,
-        imageHeight,
-        ref.current.clientWidth,
-        ref.current.clientHeight
-      )
-    );
-
     const resizeObserver = new ResizeObserver((entries) => {
       const { width: boxWidth, height: fBoxHeight } = entries[0].contentRect;
       const boxHeight = fBoxHeight;
