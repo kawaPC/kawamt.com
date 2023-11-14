@@ -1,5 +1,4 @@
 import { AppHead } from "components/AppHead";
-import { Modal } from "components/Modal";
 import { Metadata } from "next";
 import Image from "next/image";
 import { createMetadata } from "utils/metadata";
@@ -34,15 +33,6 @@ export default function Page() {
         width="187"
         height="17"
       />
-      <Modal>
-        <Image
-          src="https://storage.googleapis.com/kawamt/DSC01529.jpg"
-          alt="メールアドレス"
-          title="メールアドレス"
-          width="2048"
-          height="1368"
-        />
-      </Modal>
     </section>
   );
 }
