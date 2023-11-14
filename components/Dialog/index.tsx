@@ -34,12 +34,16 @@ const DialogContent = React.forwardRef<
     <DialogPrimitive.Content
       ref={ref}
       className={clsx(
-        "fixed left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%] z-50  w-screen h-screen flex items-center justify-center lg:max-w-5xl focus-visible:outline-none sm:p-5",
+        "fixed left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%] z-50 w-screen h-screen focus-visible:outline-none flex items-center justify-center",
         className
       )}
       {...props}
     >
-      {children}
+      <div className="w-full h-full lg:max-w-5xl py-5 sm:px-5">
+        <div className="w-full h-full relative flex items-center justify-center">
+          {children}
+        </div>
+      </div>
     </DialogPrimitive.Content>
   </DialogPortal>
 ));
