@@ -45,7 +45,10 @@ export const PhotoFrame: React.FC<Props> = ({
     if (!ghostFrameRef.current || !imageWidth || !imageHeight) return;
 
     const resizeObserver = new ResizeObserver((entries) => {
-      const { width: boxWidth, height: boxHeight } = entries[0].contentRect;
+      const { width: fboxWidth, height: fboxHeight } = entries[0].contentRect;
+      // borderの分を引く
+      const boxWidth = fboxWidth - 2;
+      const boxHeight = fboxHeight - 2;
 
       const { width, height } = calcImageSize(
         imageWidth,
