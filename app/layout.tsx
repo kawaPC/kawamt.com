@@ -30,10 +30,9 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
-    children,
-}: {
-    children: React.ReactNode;
+export default function RootLayout(props: {
+  children: React.ReactNode;
+  modal: React.ReactNode;
 }) {
   return (
     <html lang="ja">
@@ -46,7 +45,8 @@ export default function RootLayout({
         />
       </head>
       <body>
-      {children}
+        {props.children}
+        {props.modal}
       </body>
     </html>
   );
