@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { MAX_IMAGE_HEIGHT } from "utils/constants";
 import styles from "./index.module.scss";
+import Link from "next/link";
 
 function calcMaxWidthStyle(width: string, height: string) {
   const nWidth = Number(width);
@@ -16,6 +17,7 @@ function calcMaxWidthStyle(width: string, height: string) {
 
 type Props = {
   src: string;
+  filename: string;
   alt?: string;
   title?: string;
   width: string;
@@ -25,6 +27,7 @@ type Props = {
 
 const CustomImage: React.FC<Props> = ({
   src,
+  filename,
   alt,
   title,
   width,
@@ -36,15 +39,17 @@ const CustomImage: React.FC<Props> = ({
       className="mx-auto mt-5 pb-5"
       style={calcMaxWidthStyle(width, height)}
     >
-      <Image
-        className={styles.picture}
-        src={src}
-        width={Number(width)}
-        height={Number(height)}
-        alt={alt || ""}
-        title={title}
-        placeholder={`data:image/svg+xml;base64,${placeholder}`}
-      />
+      <Link href={`/photos/${filename}`}>
+        <Image
+          className={styles.picture}
+          src={src}
+          width={Number(width)}
+          height={Number(height)}
+          alt={alt || ""}
+          title={title}
+          placeholder={`data:image/svg+xml;base64,${placeholder}`}
+        />
+      </Link>
       {title && (
         <figcaption className="text-center text-xs text-gray-600 mt-2">
           {title}
