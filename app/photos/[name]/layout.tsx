@@ -7,8 +7,8 @@ export default function PhotoLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="w-full h-screen max-w-5xl flex flex-col py-5 sm:px-5 gap-y-3 md:gap-y-5 mx-auto">
-      <div className="w-full max-w-4xl mx-auto px-3 md:px-5">
+    <div className="w-full h-screen max-w-5xl flex flex-col py-5 md:px-5 gap-y-3 md:gap-y-5 mx-auto">
+      <div className="w-full max-w-4xl mx-auto px-3 md:p-0">
         <Header />
       </div>
 
