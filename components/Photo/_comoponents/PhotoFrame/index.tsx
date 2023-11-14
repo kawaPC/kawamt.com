@@ -83,7 +83,12 @@ export const PhotoFrame: React.FC<Props> = ({
           invisible: !isLoaded,
         })}
       >
-        <div className="bg-white border sm:p-3 shadow-lg inline-flex flex-col">
+        <div
+          className="bg-white border sm:p-3 shadow-lg inline-flex flex-col"
+          onClick={(e) => {
+            e.stopPropagation();
+          }}
+        >
           <div className="flex flex-col">
             <div className="relative" ref={frameRef}>
               {children}

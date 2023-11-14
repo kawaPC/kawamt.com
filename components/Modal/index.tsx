@@ -11,7 +11,7 @@ export const Modal: React.FC<Props> = ({ children }) => {
 
   return (
     <Dialog defaultOpen onOpenChange={router.back}>
-      <DialogContent>{children}</DialogContent>
+      <DialogContent onClick={router.back}>{children}</DialogContent>
     </Dialog>
   );
 };
