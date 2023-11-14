@@ -1,107 +1,28 @@
-"use client";
 import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
+import { PhotoFrame } from "./_comoponents/PhotoFrame";
+import imageSizes from "static/imageSizes.json";
+import { PlaceholderValue } from "next/dist/shared/lib/get-img-props";
+import { ExifText } from "./_comoponents/ExifText";
 
 type Props = {
-  src: string;
-  name: string;
-  width?: number;
-  height?: number;
-  placeholder: `data:image/${string}`;
-  datetime?: string;
-  exifText?: string;
+  filename: string;
 };
 
-const calcImageSize = (
-  imageWidth: number,
-  imageHeight: number,
-  boxWidth: number,
-  boxHeight: number
-) => {
-  // 画像の縦幅と横幅が、contentRect の縦幅と横幅よりも小さい場合
-  if (imageWidth < boxWidth && imageHeight < boxHeight) {
-    // 画像そのもののサイズを返す
-    return { width: imageWidth, height: imageHeight };
-  } else {
-    const hFillWidth = Math.round((boxHeight * imageWidth) / imageHeight);
-    const wFillHeight = Math.round((boxWidth * imageHeight) / imageWidth);
-    return hFillWidth < boxWidth
-      ? { width: hFillWidth, height: boxHeight }
-      : { width: boxWidth, height: wFillHeight };
-  }
-};
+export const Photo: React.FC<Props> = ({ filename }) => {
+  const { base64, width, height, ...exif } = imageSizes[filename];
 
-export const Photo: React.FC<Props> = ({
-  src,
-  name,
-  width: imageWidth,
-  height: imageHeight,
-  placeholder,
-  datetime,
-  exifText,
-}) => {
-  const [imageSizes, setImageSizes] = useState<null | {
-    width: number;
-    height: number;
-  }>(null);
-
-  const ref = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    if (!ref.current || !imageWidth || !imageHeight) return;
-
-    const resizeObserver = new ResizeObserver((entries) => {
-      const { width: boxWidth, height: fBoxHeight } = entries[0].contentRect;
-      const boxHeight = fBoxHeight;
-
-      setImageSizes(
-        calcImageSize(imageWidth, imageHeight, boxWidth, boxHeight)
-      );
-    });
-
-    resizeObserver.observe(ref.current);
-
-    return () => {
-      resizeObserver.disconnect();
-    };
-  }, [imageWidth, imageHeight]);
+  const src = `${process.env.NEXT_PUBLIC_IMG_DOMAIN}/${filename}`;
+  const placeholder: PlaceholderValue = base64
+    ? `data:image/svg+xml;base64,${base64}`
+    : "blur";
 
   return (
-    <>
-      <div className="absolute w-full h-full sm:p-3 inline-flex flex-col">
-        <div className="flex-1" ref={ref}></div>
-        {(datetime || exifText) && (
-          <div
-            className="flex flex-wrap gap-x-4 justify-between text-[10px] leading-[20px] p-2 sm:pb-0 invisible"
-            style={{ width: imageSizes?.width }}
-          >
-            <span>{datetime}</span>
-            <span>{exifText}</span>
-          </div>
-        )}
-      </div>
-      {imageSizes && (
-        <div className="absolute flex justify-center items-center">
-          <div className="bg-white border sm:p-3 shadow-lg inline-flex flex-col">
-            <Image
-              src={src}
-              width={imageSizes.width}
-              height={imageSizes.height}
-              alt={name}
-              placeholder={placeholder}
-            />
-            {(datetime || exifText) && (
-              <div
-                className={`flex flex-wrap gap-x-4 justify-between text-[10px] leading-[20px] p-2 sm:pb-0`}
-                style={{ width: imageSizes?.width }}
-              >
-                <span>{datetime}</span>
-                <span>{exifText}</span>
-              </div>
-            )}
-          </div>
-        </div>
-      )}
-    </>
+    <PhotoFrame
+      imageWidth={width}
+      imageHeight={height}
+      exifTextElement={<ExifText {...exif} />}
+    >
+      <Image src={src} fill alt={filename} placeholder={placeholder} />
+    </PhotoFrame>
   );
 };
