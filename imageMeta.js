@@ -45,14 +45,18 @@ const generateImageMetadataFromMarkdown = async () => {
     const imageResArrayBuffer = await imageRes.arrayBuffer();
     const imageResBuffer = Buffer.from(imageResArrayBuffer);
 
-    const { width, height } = imageSize(imageResBuffer);
+    let { width, height } = imageSize(imageResBuffer);
 
     let exifrResult;
 
     if (exifrTargets.some((t) => image.endsWith(t))) {
       exifrResult = await exifr.parse(imageResBuffer);
     }
+
     const {
+      Orientation,
+      ExifImageWidth,
+      ExifImageHeight,
       Make,
       Model,
       LensModel,
@@ -61,6 +65,10 @@ const generateImageMetadataFromMarkdown = async () => {
       DateTimeOriginal,
       ExposureTime,
     } = exifrResult || {};
+
+    if (Orientation?.includes("90") || Orientation?.includes("270")) {
+      [width, height] = [ExifImageHeight, ExifImageWidth];
+    }
 
     const primitiveImageSrc = `https://storage.googleapis.com/kawamt/primitive/${image.replace(
       /\.(?:jpeg|jpg|png|gif)/i,
