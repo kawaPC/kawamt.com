@@ -2,6 +2,7 @@ const { join } = require("path");
 const imageSize = require("image-size");
 const fs = require("fs");
 const mkdirp = require("mkdirp");
+const exifr = require("exifr");
 
 const ENTRIES_PATH = join(process.cwd(), "entry/");
 
@@ -15,6 +16,8 @@ const getAllEntries = () => {
     return fs.readFileSync(path, "utf8");
   });
 };
+
+const exifrTargets = ["jpeg", "jpg", "png"];
 
 const generateImageMetadataFromMarkdown = async () => {
   const entries = getAllEntries();
@@ -42,7 +45,30 @@ const generateImageMetadataFromMarkdown = async () => {
     const imageResArrayBuffer = await imageRes.arrayBuffer();
     const imageResBuffer = Buffer.from(imageResArrayBuffer);
 
-    const { width, height } = imageSize(imageResBuffer);
+    let { width, height } = imageSize(imageResBuffer);
+
+    let exifrResult;
+
+    if (exifrTargets.some((t) => image.endsWith(t))) {
+      exifrResult = await exifr.parse(imageResBuffer);
+    }
+
+    const {
+      Orientation,
+      ExifImageWidth,
+      ExifImageHeight,
+      Make,
+      Model,
+      LensModel,
+      FNumber,
+      ISO,
+      DateTimeOriginal,
+      ExposureTime,
+    } = exifrResult || {};
+
+    if (Orientation?.includes("90") || Orientation?.includes("270")) {
+      [width, height] = [ExifImageHeight, ExifImageWidth];
+    }
 
     const primitiveImageSrc = `https://storage.googleapis.com/kawamt/primitive/${image.replace(
       /\.(?:jpeg|jpg|png|gif)/i,
@@ -58,7 +84,20 @@ const generateImageMetadataFromMarkdown = async () => {
       base64 = Buffer.from(primitiveImageResBuffer).toString("base64");
     }
 
-    return { [image]: { width, height, base64 } };
+    return {
+      [image]: {
+        width,
+        height,
+        base64,
+        Make,
+        Model,
+        LensModel,
+        FNumber,
+        ISO,
+        DateTimeOriginal,
+        ExposureTime,
+      },
+    };
   });
 
   const imageSizes = await Promise.all(imageSizePromises);

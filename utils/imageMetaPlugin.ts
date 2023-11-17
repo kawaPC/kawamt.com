@@ -7,6 +7,7 @@ type ImageNode = {
   tagName: "img";
   properties: {
     src: string;
+    filename: string;
     height?: number;
     width?: number;
     placeholder?: string;
@@ -30,6 +31,7 @@ async function addProps(node: ImageNode): Promise<void> {
 
   if (data) {
     node.properties.src = `${process.env.NEXT_PUBLIC_IMG_DOMAIN}/${filename}`;
+    node.properties.filename = filename;
     node.properties.width = data.width;
     node.properties.height = data.height;
     node.properties.placeholder = data.base64;

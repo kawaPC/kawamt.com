@@ -2,7 +2,7 @@ export type IEntry = {
   slug: string;
   date: string;
   description: string;
-  ogImage?: string;
+  ogImageName?: string;
   formatDate: string;
   title?: string;
   tags?: string[];

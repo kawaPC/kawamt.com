@@ -19,9 +19,11 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: Params): Promise<Metadata> {
   const { title: slug } = params;
 
-  const { title, ogImage, description } = await getEntry(
+  const { title, ogImageName, description } = await getEntry(
     params?.title as string
   );
+
+  const ogImage = `${process.env.NEXT_PUBLIC_IMG_PRIMITIVE_DOMAIN}/${ogImageName}.jpg`;
 
   return createMetadata({
     path: `/entry/${slug}`,
