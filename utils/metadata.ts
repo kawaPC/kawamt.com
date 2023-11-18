@@ -28,6 +28,7 @@ export const createMetadata = ({
     : "/og_image.png";
 
   const openGraph: Metadata["openGraph"] = {
+    title: title,
     images: [{ url: ogImageUrl }],
     siteName: SITE_NAME,
     description: description || SITE_DESCRIPTION,

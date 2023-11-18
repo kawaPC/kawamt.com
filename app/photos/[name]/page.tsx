@@ -29,7 +29,7 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
     path: `/photos/${name}`,
     title,
     description,
-    ogImage,
+    ogImage: name.replace(/\.(?:jpeg|jpg|png|gif)/i, ""),
   });
 }
 
