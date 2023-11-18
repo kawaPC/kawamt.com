@@ -23,13 +23,11 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
     params?.title as string
   );
 
-  const ogImage = `${process.env.NEXT_PUBLIC_IMG_PRIMITIVE_DOMAIN}/${ogImageName}`;
-
   return createMetadata({
     path: `/entry/${slug}`,
     title: title || slug,
     description: description || `「${title}」の記事詳細`,
-    ogImage,
+    ogImage: ogImageName,
   });
 }
 
